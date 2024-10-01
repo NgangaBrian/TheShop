@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "672373622687",
+    "project_id": "theshop-29b33",
+    "storage_bucket": "theshop-29b33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672373622687:android:93f899500b7560c4f49faa",
+        "android_client_info": {
+          "package_name": "com.example.theshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjBm7Voyk5si2jg5TvjMqBOjB2qz7oq0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

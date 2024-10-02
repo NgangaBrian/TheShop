@@ -82,16 +82,18 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mProgressDialog.show();
-                checkLoginDetails();
+                String email = emailtv.getText().toString();
+                String password = passwordtv.getText().toString();
+                String authType = "password";
+                String googleId = "";
+                checkLoginDetails(email, password, authType, googleId);
             }
         });
 
 
     }
 
-    private void checkLoginDetails() {
-        String email = emailtv.getText().toString();
-        String password = passwordtv.getText().toString();
+    private void checkLoginDetails(String email, String password, String googleId, String authType) {
 
         if(email.equals(""))
             emailtv.setError("Required");
@@ -105,6 +107,8 @@ public class Login extends AppCompatActivity {
         HashMap<String, String> params = new HashMap<>();
         params.put("email", email);
         params.put("password", password);
+        params.put("googleId", googleId);
+        params.put("authType", authType);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override
@@ -165,10 +169,12 @@ public class Login extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             String email = account.getEmail();
             String displayName = account.getDisplayName();
+            String idToken = account.getId();
 
             // Handle the sign-in. Send the token to my backend
 
-            Toast.makeText(this, "Signed in as: " + displayName + " (" + email + ") ", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, "Signed in as: " + displayName + " (" + email + ") ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, idToken + " Hello", Toast.LENGTH_SHORT).show();
         } catch (ApiException e){
             Log.w("Login", "SignInResult:failed code=" + e.getStatusCode());
             Toast.makeText(this, "Sign-in failed, please try again", Toast.LENGTH_SHORT).show();

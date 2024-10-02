@@ -68,6 +68,7 @@ public class SignUp extends AppCompatActivity {
         // Configure Google Sign-In
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
+                .requestIdToken("49701769693-ted2fbp5ulbr50npjmm5eehf892sbf7g.apps.googleusercontent.com")
                 .build();
 
         // Set up the Google sign-in client
@@ -107,7 +108,7 @@ public class SignUp extends AppCompatActivity {
 
     }
 
-    private void storeDetails(String fullname, String email, String password, String googleId, String authType) {
+    private void storeDetails(String fullname, String email, String password, String idToken, String authType) {
         RequestQueue queue = Volley.newRequestQueue(SignUp.this);
 
         String url = "http://192.168.43.233:8080/api/v1/user/register";
@@ -164,7 +165,7 @@ public class SignUp extends AppCompatActivity {
                 params.put("fullname", fullname);
                 params.put("email", email);
                 params.put("password", password);
-                params.put("googleId", googleId);
+                params.put("googleId", idToken);
                 params.put("authType", authType);
 
                 return params;
@@ -201,16 +202,20 @@ public class SignUp extends AppCompatActivity {
             String email = account.getEmail();
             String displayName = account.getDisplayName();
             String googleId = account.getId();
+            String idToken = account.getIdToken();
             String password = "";
             String authType = "google";
 
             // Handle the sign-in. Send the token to my backend
 
-            Toast.makeText(this, "Signed UP as: " + displayName + " ( " + email + " ) ", Toast.LENGTH_SHORT).show();
-            storeDetails(displayName, email, password, googleId, authType);
+            //Toast.makeText(this, "Signed UP as: " + displayName + " ( " + email + " ) ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, idToken + " // " + googleId, Toast.LENGTH_SHORT).show();
+            storeDetails(displayName, email, password, idToken, authType);
         } catch (ApiException e){
             Log.w("Login", "SignInResult:failed code=" + e.getStatusCode());
+            e.printStackTrace();
             Toast.makeText(this, "Sign-in failed, please try again", Toast.LENGTH_SHORT).show();
+            mProgressDialog.dismiss();
         }
     }
 }

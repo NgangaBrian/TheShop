@@ -12,7 +12,12 @@
           "package_name": "com.example.theshop"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "672373622687-m6nka97o5mn76ett4m095nfmbjacjcjb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAjBm7Voyk5si2jg5TvjMqBOjB2qz7oq0M"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "672373622687-m6nka97o5mn76ett4m095nfmbjacjcjb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

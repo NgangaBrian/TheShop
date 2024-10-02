@@ -22,9 +22,12 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	runtimeOnly("com.mysql:mysql-connector-j")
+	implementation ("com.google.api-client:google-api-client:1.33.0")
+	implementation ("com.google.http-client:google-http-client-jackson2:1.40.1")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
 }
 
 tasks.withType<Test> {

@@ -3,6 +3,8 @@ package com.example.TheShop.restControllers;
 import com.example.TheShop.models.Login;
 import com.example.TheShop.models.User;
 import com.example.TheShop.services.UserService;
+import com.example.TheShop.utils.GoogleTokenVerifier;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -23,17 +27,63 @@ public class LoginController {
 
     @PostMapping("/user/login")
     public ResponseEntity authenticateUser(@RequestBody Login login){
-        boolean userEmail = userService.checkUserExists(login.getEmail());
 
-        if(userEmail == false){
-            return new ResponseEntity("Email does not exist", HttpStatus.NOT_FOUND);
-        }
-        String hashedPassword = userService.checkUserPasswordByEmail(login.getEmail());
-        if(!BCrypt.checkpw(login.getPassword(), hashedPassword)){
-            return new ResponseEntity("Incorrect email or password", HttpStatus.BAD_REQUEST);
-        }
+        Map<String, Object> response = new HashMap<>();
+
         User user = userService.getUserDetailsByEmail(login.getEmail());
-        return new ResponseEntity(user, HttpStatus.OK);
+
+        // Google login authentication
+        if ("google".equals(login.getAuthType())) {
+            // Handle Google user authentication
+            // You should verify the Google ID token here (e.g., using Google's API)
+            try {
+
+                Payload payload = GoogleTokenVerifier.verifyGoogleToken(login.getGoogleId());
+
+                String email = payload.getEmail();
+
+                boolean userEmail = userService.checkUserExists(email);
+
+                if(!userEmail){
+                    response.put("status", "error");
+                    response.put("message", "Email does not exist");
+                    return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+                }
+
+                if (!login.getGoogleId().equals(user.getGoogleId())) {
+                    response.put("status", "error");
+                    response.put("message", "Invalid Google authentication");
+                    return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+                }
+                response.put("status", "success");
+                response.put("user", user);
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } catch (Exception e) {
+                response.put("status", "error");
+                response.put("message", "Invalid Google authentication!!!!");
+                return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+            }
+        }
+
+        // Manual login
+        else if ("password".equals(login.getAuthType())) {
+            boolean userEmail = userService.checkUserExists(login.getEmail());
+            if(!userEmail){
+                response.put("status", "error");
+                response.put("message", "Email does not exist");
+                return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+            }
+            String hashedPassword = userService.checkUserPasswordByEmail(login.getEmail());
+            if (!BCrypt.checkpw(login.getPassword(), hashedPassword)) {
+                return new ResponseEntity("Incorrect email or password", HttpStatus.BAD_REQUEST);
+            }
+
+            return new ResponseEntity(user, HttpStatus.OK);
+        } else {
+            response.put("status", "error");
+            response.put("message", "Invalid Auth Type");
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+        }
 
 
 

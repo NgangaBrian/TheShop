@@ -16,7 +16,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
     private String password;
+    @Column(name = "googleId")
     private String googleId;
+    @Column(name = "authType")
     private String authType;
     private Date created_at;
     @Transient
@@ -32,11 +34,11 @@ public class User {
         this.authType = authType;
     }
 
-    public int getUserId() {
+    public int getId() {
         return id;
     }
 
-    public void setUserId(int userId) {
+    public void setId(int userId) {
         this.id = userId;
     }
 

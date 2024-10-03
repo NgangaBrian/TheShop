@@ -2,7 +2,9 @@ package com.example.theshop;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.credentials.CredentialManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -65,10 +67,13 @@ public class SignUp extends AppCompatActivity {
         mProgressDialog.setTitle("Please Wait...");
         mProgressDialog.setIndeterminate(true);
 
+
+
+
         // Configure Google Sign-In
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
-                .requestIdToken("49701769693-ted2fbp5ulbr50npjmm5eehf892sbf7g.apps.googleusercontent.com")
+                .requestIdToken("49701769693-u2l7gbm64nm0vonkja627fanrk7iln8p.apps.googleusercontent.com")
                 .build();
 
         // Set up the Google sign-in client
@@ -116,9 +121,6 @@ public class SignUp extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(SignUp.this, response, Toast.LENGTH_SHORT).show();
-                System.out.println(response);
-                Log.d("SignUpResponse", response);
                 if(response.equalsIgnoreCase("User already exists")){
                     Toast.makeText(SignUp.this, "User Already Exists. Please login", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SignUp.this, Login.class);
@@ -132,16 +134,11 @@ public class SignUp extends AppCompatActivity {
                     Intent intent = new Intent(SignUp.this, Login.class);
                     startActivity(intent);
                     finish();
-                } else if (response.equalsIgnoreCase("Invalid authentication type.")) {
-                    Toast.makeText(SignUp.this, "Failed. Please try again", Toast.LENGTH_SHORT).show();
-                    fullnametv.setText("");
-                    emailtv.setText("");
-                    passwordtv.setText("");
-                    confirmpwordtv.setText("");
-                    mProgressDialog.dismiss();
                 } else {
-                    Toast.makeText(SignUp.this, "Registration Faileddd", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this, "Registration Failed. Please try again", Toast.LENGTH_SHORT).show();
                     mProgressDialog.dismiss();
+                    System.out.println(response);
+                    Log.d("SignUpResponse", response);
                 }
             }
         }, new Response.ErrorListener() {
@@ -209,7 +206,7 @@ public class SignUp extends AppCompatActivity {
             // Handle the sign-in. Send the token to my backend
 
             //Toast.makeText(this, "Signed UP as: " + displayName + " ( " + email + " ) ", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, idToken + " // " + googleId, Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, idToken, Toast.LENGTH_SHORT).show();
             storeDetails(displayName, email, password, idToken, authType);
         } catch (ApiException e){
             Log.w("Login", "SignInResult:failed code=" + e.getStatusCode());

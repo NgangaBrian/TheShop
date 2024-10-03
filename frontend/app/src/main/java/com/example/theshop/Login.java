@@ -65,6 +65,7 @@ public class Login extends AppCompatActivity {
         // Configure Google Sign-In
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
+                .requestIdToken("49701769693-u2l7gbm64nm0vonkja627fanrk7iln8p.apps.googleusercontent.com")
                 .build();
 
         // Set up the Google sign-in client
@@ -84,21 +85,18 @@ public class Login extends AppCompatActivity {
                 mProgressDialog.show();
                 String email = emailtv.getText().toString();
                 String password = passwordtv.getText().toString();
-                String authType = "password";
                 String googleId = "";
-                checkLoginDetails(email, password, authType, googleId);
+                String authType = "password";
+
+                if(email.equals(""))
+                    emailtv.setError("Required");
+                if(password.equals(""))
+                    passwordtv.setError("Required");
+                checkLoginDetails(email, password, googleId, authType);
             }
         });
-
-
     }
-
     private void checkLoginDetails(String email, String password, String googleId, String authType) {
-
-        if(email.equals(""))
-            emailtv.setError("Required");
-        if(password.equals(""))
-            passwordtv.setError("Required");
 
         RequestQueue requestQueue = Volley.newRequestQueue(Login.this);
 
@@ -114,20 +112,49 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    // Get values from the JSON response
-                    String fullName = (String) response.get("fullname");
-                    String email = (String) response.get("email");
-                    Toast.makeText(Login.this, fullName+" "+email, Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(Login.this, Home.class);
-                    intent.putExtra("fullname", fullName);
-                    intent.putExtra("email", email);
-                    startActivity(intent);
-                    mProgressDialog.dismiss();
-                    finish();
+                    String status = response.getString("status");
+
+                    if("success".equals(status)) {
+
+
+                        // Get values from the JSON response
+                        JSONObject user = response.getJSONObject("user");
+                        String fullName = user.getString("fullname");
+                        String email = user.getString("email");
+                        Toast.makeText(Login.this, fullName + " " + email, Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(Login.this, Home.class);
+                        intent.putExtra("fullname", fullName);
+                        intent.putExtra("email", email);
+                        startActivity(intent);
+                        mProgressDialog.dismiss();
+                        finish();
+                    } else if("error".equals(status)) {
+                        String message = response.getString("message");
+                        if ("Email does not exist".equals(message)){
+                            mProgressDialog.dismiss();
+                            Toast.makeText(Login.this, "Please create an account", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(Login.this, SignUp.class);
+                            startActivity(intent);
+                            finish();
+                        } else if ("Incorrect email or password".equals(message)) {
+                            mProgressDialog.dismiss();
+                            passwordtv.setError(message);
+                            Toast.makeText(Login.this, message, Toast.LENGTH_SHORT).show();
+                        } else if ("Invalid Google authentication!!!!".equals(message)) {
+                            System.out.println("Google Token Tampered with!");
+                            Log.e("Tampered!!", "Token Has Been Tampered with, Make sure you enforce your security NOW!!!");
+                        } else {
+                            Log.e("Check What's wrong!! Because something is wrong. Probably authType", message);
+                        }
+
+                    }
                 } catch (JSONException e){
                     e.printStackTrace();
                     System.out.println(e.getMessage());
+                    Toast.makeText(Login.this, "An error occurred while processing your request.", Toast.LENGTH_SHORT).show();
+                    mProgressDialog.dismiss();
                 }
             }
         }, new Response.ErrorListener() {
@@ -169,12 +196,15 @@ public class Login extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             String email = account.getEmail();
             String displayName = account.getDisplayName();
-            String idToken = account.getId();
+            String idToken = account.getIdToken();
+            String password = "";
+            String authType = "google";
 
             // Handle the sign-in. Send the token to my backend
+            checkLoginDetails(email, password, idToken, authType);
 
-            // Toast.makeText(this, "Signed in as: " + displayName + " (" + email + ") ", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, idToken + " Hello", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, displayName + " (" + email + ") ", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, idToken + " Hello", Toast.LENGTH_SHORT).show();
         } catch (ApiException e){
             Log.w("Login", "SignInResult:failed code=" + e.getStatusCode());
             Toast.makeText(this, "Sign-in failed, please try again", Toast.LENGTH_SHORT).show();

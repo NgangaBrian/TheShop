@@ -9,7 +9,7 @@ import java.util.Collections;
 
 public class GoogleTokenVerifier {
 
-    private static final String CLIENT_ID = "49701769693-ted2fbp5ulbr50npjmm5eehf892sbf7g.apps.googleusercontent.com";
+    private static final String CLIENT_ID = "49701769693-u2l7gbm64nm0vonkja627fanrk7iln8p.apps.googleusercontent.com";
 
     public  static GoogleIdToken.Payload verifyGoogleToken(String idTokenString) throws Exception{
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())

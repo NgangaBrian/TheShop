@@ -41,19 +41,20 @@ public class LoginController {
                 Payload payload = GoogleTokenVerifier.verifyGoogleToken(login.getGoogleId());
 
                 String email = payload.getEmail();
+                String payloadGoogleId = payload.getSubject();
 
                 boolean userEmail = userService.checkUserExists(email);
 
                 if(!userEmail){
                     response.put("status", "error");
                     response.put("message", "Email does not exist");
-                    return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+                    return new ResponseEntity<>(response, HttpStatus.OK);
                 }
 
-                if (!login.getGoogleId().equals(user.getGoogleId())) {
+                if (!payloadGoogleId.equals(user.getGoogleId())) {
                     response.put("status", "error");
                     response.put("message", "Invalid Google authentication");
-                    return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+                    return new ResponseEntity<>(response, HttpStatus.OK);
                 }
                 response.put("status", "success");
                 response.put("user", user);
@@ -61,7 +62,7 @@ public class LoginController {
             } catch (Exception e) {
                 response.put("status", "error");
                 response.put("message", "Invalid Google authentication!!!!");
-                return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(response, HttpStatus.OK);
             }
         }
 
@@ -71,18 +72,21 @@ public class LoginController {
             if(!userEmail){
                 response.put("status", "error");
                 response.put("message", "Email does not exist");
-                return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(response, HttpStatus.OK);
             }
             String hashedPassword = userService.checkUserPasswordByEmail(login.getEmail());
             if (!BCrypt.checkpw(login.getPassword(), hashedPassword)) {
-                return new ResponseEntity("Incorrect email or password", HttpStatus.BAD_REQUEST);
+                response.put("status", "error");
+                response.put("message", "Incorrect email or password");
+                return new ResponseEntity(response, HttpStatus.OK);
             }
-
-            return new ResponseEntity(user, HttpStatus.OK);
+            response.put("status", "success");
+            response.put("user", user);
+            return new ResponseEntity(response, HttpStatus.OK);
         } else {
             response.put("status", "error");
             response.put("message", "Invalid Auth Type");
-            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
 
 

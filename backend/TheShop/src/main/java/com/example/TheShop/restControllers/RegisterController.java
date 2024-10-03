@@ -3,6 +3,8 @@ package com.example.TheShop.restControllers;
 
 import com.example.TheShop.repository.UserRepository;
 import com.example.TheShop.services.UserService;
+import com.example.TheShop.utils.GoogleTokenVerifier;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,14 +27,24 @@ public class RegisterController {
     public ResponseEntity<String> registerNewUser(@RequestParam("fullname") String fullname,
                                                   @RequestParam("email") String email,
                                                   @RequestParam(value = "password", required = false) String password,
-                                                  @RequestParam(value = "googleId", required = false) String googleId,
+                                                  @RequestParam(value = "googleId", required = false) String idToken,
                                                   @RequestParam("authType") String authType) {
         if(authType.equals("google")) {
-            if (userService.checkGoogleUserExists(googleId)) {
+            try {
+                Payload payload = GoogleTokenVerifier.verifyGoogleToken(idToken);
+
+                String payloadEmail = payload.getEmail();
+                String payloadGoogleId = payload.getSubject();
+                String payloadName = (String) payload.get("name");
+
+            if (userService.checkGoogleUserExists(payloadGoogleId)) {
                 return ResponseEntity.ok("User already exists");
             } else {
-                userService.registerGoogleUser(fullname, email, googleId, authType);
+                userService.registerGoogleUser(payloadName, payloadEmail, payloadGoogleId, authType);
                 return ResponseEntity.ok("Google User registered successfully");
+            }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
 

@@ -112,12 +112,9 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-
                     String status = response.getString("status");
 
                     if("success".equals(status)) {
-
-
                         // Get values from the JSON response
                         JSONObject user = response.getJSONObject("user");
                         String fullName = user.getString("fullname");

@@ -1,33 +1,26 @@
-package com.example.theshop;
+package com.example.theshop.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.credentials.CredentialManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.BuildConfig;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.theshop.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -128,6 +121,13 @@ public class SignUp extends AppCompatActivity {
                     finish();
                     mProgressDialog.dismiss();
                 } else if (response.equalsIgnoreCase("User registered successfully")) {
+                    Toast.makeText(SignUp.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+                    // If authType == password, send a verification code(On backend tho) but here, open a verify email page
+                    mProgressDialog.dismiss();
+                    Intent intent = new Intent(SignUp.this, Login.class);
+                    startActivity(intent);
+                    finish();
+                } else if (response.equalsIgnoreCase("Google User registered successfully")) {
                     Toast.makeText(SignUp.this, "User registered successfully", Toast.LENGTH_SHORT).show();
                     // If authType == password, send a verification code(On backend tho) but here, open a verify email page
                     mProgressDialog.dismiss();

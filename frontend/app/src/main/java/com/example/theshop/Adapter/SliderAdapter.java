@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.CenterInside;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.theshop.Model.SliderModel;
 import com.example.theshop.R;
@@ -59,9 +61,11 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
         }
 
         public void setImage(SliderModel sliderModel, Context context){
-            RequestOptions requestOptions = new RequestOptions().transform(new CenterInside());
+            Glide.with(context).clear(imageView);
+            RequestOptions requestOptions = new RequestOptions().transform(new CenterCrop());
             Glide.with(context)
                     .load(sliderModel.getimageUrl())
+                    .apply(requestOptions)
                     .into(imageView);
         }
     }

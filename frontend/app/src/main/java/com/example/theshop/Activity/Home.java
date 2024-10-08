@@ -15,11 +15,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.theshop.Adapter.CategoriesAdapter;
 import com.example.theshop.Adapter.SliderAdapter;
 import com.example.theshop.Model.SliderModel;
 import com.example.theshop.R;
@@ -34,8 +36,9 @@ public class Home extends AppCompatActivity {
     private MainViewModel mainViewModel;
     private SliderAdapter sliderAdapter;
     private DotsIndicator dotsIndicator;
-    private ProgressBar progressBar;
+    private ProgressBar progressBarBanner, progressBarCategories, progressBarBestSeller;
     private TextView name;
+    private RecyclerView recyclerViewCategories;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -49,12 +52,16 @@ public class Home extends AppCompatActivity {
 
         viewPager21 = findViewById(R.id.viewPager2);
         dotsIndicator = findViewById(R.id.dotIndicatorBanner);
-        progressBar = findViewById(R.id.progressBarBanner);
+        progressBarBanner = findViewById(R.id.progressBarBanner);
+        progressBarCategories = findViewById(R.id.progressBarCategory);
+        progressBarBestSeller = findViewById(R.id.progressBestSell);
+        recyclerViewCategories = findViewById(R.id.recyclerViewCategory);
         name = findViewById(R.id.nametv);
         name.setText(fullname);
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         initBanners();
+        initCategory();
 
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -63,11 +70,22 @@ public class Home extends AppCompatActivity {
         decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
+    private void initCategory() {
+        progressBarCategories.setVisibility(View.VISIBLE);
+        mainViewModel.getCategory().observe(this, items -> {
+            recyclerViewCategories.setLayoutManager(new LinearLayoutManager(this,
+                    LinearLayoutManager.HORIZONTAL, false));
+            recyclerViewCategories.setAdapter(new CategoriesAdapter(items));
+            progressBarCategories.setVisibility(View.GONE);
+        });
+        mainViewModel.loadCategory(getApplicationContext());
+    }
+
     private void initBanners(){
-        progressBar.setVisibility(View.VISIBLE);
+        progressBarBanner.setVisibility(View.VISIBLE);
         mainViewModel.getSlider().observe(this, banners -> {
             updateSlider(banners);
-            progressBar.setVisibility(View.GONE);
+            progressBarBanner.setVisibility(View.GONE);
         });
         mainViewModel.loadSlider(getApplicationContext());
     }

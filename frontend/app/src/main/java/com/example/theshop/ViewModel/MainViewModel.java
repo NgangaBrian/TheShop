@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.theshop.Model.CategoryModel;
 import com.example.theshop.Model.SliderModel;
 
 import org.json.JSONArray;
@@ -29,6 +30,8 @@ public class MainViewModel extends ViewModel {
 
     private Context context;
     private MutableLiveData<List<SliderModel>> _slider = new MutableLiveData<>();
+    private MutableLiveData<List<CategoryModel>> _category = new MutableLiveData<>();
+
 
     public MainViewModel(){}
     public MainViewModel (Context context){
@@ -39,7 +42,12 @@ public class MainViewModel extends ViewModel {
         return _slider;
     }
 
+    public LiveData<List<CategoryModel>> getCategory(){
+        return  _category;
+    }
+
     public void loadSlider(Context context){
+
         String url = "http://192.168.43.233:8080/api/v1/bannersliders";
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
@@ -76,5 +84,46 @@ public class MainViewModel extends ViewModel {
             }
         });
         requestQueue.add(jsonArrayRequest);
+    }
+
+    public void loadCategory(Context context){
+        String url = "http://192.168.43.233:8080/api/v1/categories";
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("JSON Response", response.toString());
+                try {
+                    List<CategoryModel> categoryModelList = new ArrayList<>();
+                    for(int i = 0; i < response.length(); i++){
+                        JSONObject categoriesJson = response.getJSONObject(i);
+
+                        CategoryModel categoryModel = new CategoryModel();
+                        categoryModel.setId(categoriesJson.getLong("categories_id"));
+                        categoryModel.setName(categoriesJson.getString("name"));
+                        categoryModel.setImageUrl(categoriesJson.getString("image_url"));
+
+                        categoryModelList.add(categoryModel);
+
+                    }
+                    _category.setValue(categoryModelList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    e.getMessage();
+                    Toast.makeText(context, "Cannot retrieve image url", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                error.getMessage();
+                Toast.makeText(context, "Faileddd!!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonArrayRequest);
+
     }
 }

@@ -15,12 +15,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.theshop.Adapter.BestSellerAdapter;
 import com.example.theshop.Adapter.CategoriesAdapter;
 import com.example.theshop.Adapter.SliderAdapter;
 import com.example.theshop.Model.SliderModel;
@@ -38,7 +40,7 @@ public class Home extends AppCompatActivity {
     private DotsIndicator dotsIndicator;
     private ProgressBar progressBarBanner, progressBarCategories, progressBarBestSeller;
     private TextView name;
-    private RecyclerView recyclerViewCategories;
+    private RecyclerView recyclerViewCategories, recyclerViewBestSeller;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -56,18 +58,30 @@ public class Home extends AppCompatActivity {
         progressBarCategories = findViewById(R.id.progressBarCategory);
         progressBarBestSeller = findViewById(R.id.progressBestSell);
         recyclerViewCategories = findViewById(R.id.recyclerViewCategory);
+        recyclerViewBestSeller = findViewById(R.id.recyclerBestSelling);
         name = findViewById(R.id.nametv);
         name.setText(fullname);
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         initBanners();
         initCategory();
+        initBestSeller();
 
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         View decor = window.getDecorView();
         decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    }
+
+    private void initBestSeller() {
+        progressBarBestSeller.setVisibility(View.VISIBLE);
+        mainViewModel.getBestSeller().observe(this, items ->{
+            recyclerViewBestSeller.setLayoutManager(new GridLayoutManager(this, 2));
+            recyclerViewBestSeller.setAdapter(new BestSellerAdapter(items));
+            progressBarBestSeller.setVisibility(View.GONE);
+        });
+        mainViewModel.loadBestSeller(getApplicationContext());
     }
 
     private void initCategory() {

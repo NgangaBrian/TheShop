@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.theshop.Model.CategoryModel;
+import com.example.theshop.Model.ItemsModel;
 import com.example.theshop.Model.SliderModel;
 
 import org.json.JSONArray;
@@ -31,6 +32,7 @@ public class MainViewModel extends ViewModel {
     private Context context;
     private MutableLiveData<List<SliderModel>> _slider = new MutableLiveData<>();
     private MutableLiveData<List<CategoryModel>> _category = new MutableLiveData<>();
+    private MutableLiveData<List<ItemsModel>> _bestSeller = new MutableLiveData<>();
 
 
     public MainViewModel(){}
@@ -44,6 +46,9 @@ public class MainViewModel extends ViewModel {
 
     public LiveData<List<CategoryModel>> getCategory(){
         return  _category;
+    }
+    public LiveData<List<ItemsModel>> getBestSeller(){
+        return  _bestSeller;
     }
 
     public void loadSlider(Context context){
@@ -109,6 +114,49 @@ public class MainViewModel extends ViewModel {
 
                     }
                     _category.setValue(categoryModelList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    e.getMessage();
+                    Toast.makeText(context, "Cannot retrieve image url", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                error.getMessage();
+                Toast.makeText(context, "Faileddd!!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        requestQueue.add(jsonArrayRequest);
+
+    }
+
+    public void loadBestSeller(Context context){
+        String url = "http://192.168.43.233:8080/api/v1/items";
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("JSON Response", response.toString());
+                try {
+                    List<ItemsModel> itemModelList = new ArrayList<>();
+                    for(int i = 0; i < response.length(); i++){
+                        JSONObject itemsJson = response.getJSONObject(i);
+
+                        ItemsModel itemsModel = new ItemsModel();
+                        itemsModel.setId(itemsJson.getLong("product_id"));
+                        itemsModel.setName(itemsJson.getString("product_name"));
+                        itemsModel.setImageUrl(itemsJson.getString("image_url"));
+                        itemsModel.setDescription(itemsJson.getString("product_description"));
+                        itemsModel.setPrice(itemsJson.getDouble("product_price"));
+
+                        itemModelList.add(itemsModel);
+
+                    }
+                    _bestSeller.setValue(itemModelList);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     e.getMessage();

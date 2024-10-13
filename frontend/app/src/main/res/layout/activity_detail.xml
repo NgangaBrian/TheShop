@@ -9,7 +9,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:paddingBottom="80dp"
+        android:id="@+id/scrollView"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,7 +27,7 @@
                     android:id="@+id/picMain"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
+                    android:scaleType="centerInside"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -32,23 +35,19 @@
 
                 <ImageView
                     android:id="@+id/backBtn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/grey_bg_circle"
-                    android:backgroundTint="@color/white"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="48dp"
+                    android:layout_marginTop="15dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/back_navigator_icon"/>
+                    android:src="@drawable/back_navigation_icon"/>
 
                 <ImageView
                     android:id="@+id/favBtn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="16dp"
-                    android:background="@drawable/grey_bg_circle"
-                    android:backgroundTint="@color/white"
                     app:layout_constraintBottom_toBottomOf="@+id/backBtn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/backBtn"
@@ -58,6 +57,7 @@
                     android:id="@+id/picList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/white_bg"
                     app:layout_constraintBottom_toBottomOf="@+id/picMain"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -76,6 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textStyle="bold"
+                    android:layout_marginStart="8dp"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     android:text="Title" />
@@ -85,6 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$0"
+                    android:layout_marginEnd="10dp"
                     android:textSize="22sp"
                     android:textColor="@color/black"/>
             </LinearLayout>
@@ -149,7 +151,7 @@
                     app:srcCompat="@drawable/star" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/ratingTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -158,12 +160,20 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/colorList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:clipToPadding="false"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp" />
+
+            <TextView
+                android:id="@+id/descriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:textStyle="bold"
+                android:text="Description" />
 
             <TextView
                 android:id="@+id/descriptionTxt"
@@ -172,35 +182,72 @@
                 android:layout_margin="16dp"
                 android:text="Description" />
 
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/scrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/white_bg"
+            android:layout_gravity="bottom"
+            android:layout_marginEnd="8dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp"
-                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/addToCartBtn"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_margin="8dp"
-                    style="@android:style/Widget.Button"
-                    android:background="@drawable/brown_bg"
-                    android:textColor="@color/white"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:text="Add to Cart"
-                    android:textSize="18sp"/>
+                    android:background="@drawable/brown_bg"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        android:id="@+id/addToCartBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Add to Cart"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
                 <ImageView
                     android:id="@+id/cartBtn"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@drawable/grey_bg_circle"
                     android:layout_margin="8dp"
-                    android:padding="10dp"
+                    android:background="@drawable/grey_bg_circle"
                     android:elevation="2dp"
+                    android:padding="10dp"
                     app:srcCompat="@drawable/cart" />
+
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

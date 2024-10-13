@@ -76,4 +76,12 @@ public class ItemsModel implements Serializable {
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
+
+    public int getNumberInCart() {
+        return numberInCart;
+    }
+
+    public void setNumberInCart(int numberInCart) {
+        this.numberInCart = numberInCart;
+    }
 }

@@ -25,4 +25,6 @@ public class CategoriesController {
     public List<CategoriesModel> getAllCategories() {
         return categoriesService.getAllCategories();
     }
+
+    // todo :
 }

@@ -1,4 +1,4 @@
-package com.example.TheShop.securityConfig;
+package com.example.TheShop.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

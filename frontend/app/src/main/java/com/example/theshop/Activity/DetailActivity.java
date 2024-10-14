@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +35,7 @@ public class DetailActivity extends AppCompatActivity {
     private  int numberOrder=1;
     private ManagementCart managementCart;
     public RecyclerView picListt;
-    public ImageView picMainn, back, callSeller, msgSeller;
+    public ImageView picMainn, back, callSeller, msgSeller, cartBtn;
     public TextView titleTV, priceTV, ratingTV, descriptionTV, addToCart;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -51,6 +52,7 @@ public class DetailActivity extends AppCompatActivity {
         callSeller = findViewById(R.id.callToSellerBtn);
         msgSeller = findViewById(R.id.msgToSellerBtn);
         picMainn = findViewById(R.id.picMain);
+        cartBtn = findViewById(R.id.cartBtn);
         picListt = findViewById(R.id.picList);
 
         managementCart = new ManagementCart(this);
@@ -63,6 +65,18 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 item.setNumberInCart(numberOrder);
                 managementCart.inserItems(item);
+            }
+        });
+
+        cartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!managementCart.getListCart().isEmpty()) {
+                    Intent intent = new Intent(DetailActivity.this, CartActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(DetailActivity.this, "Your Cart is Empty", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

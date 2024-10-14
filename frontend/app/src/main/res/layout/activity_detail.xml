@@ -7,17 +7,58 @@
     android:layout_height="match_parent"
     tools:context=".Activity.DetailActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/brown_bottom_conner_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/white_bg"
+            android:src="@drawable/back_navigation_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/favBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/white_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/favourites" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:paddingBottom="80dp"
-        android:id="@+id/scrollView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
         tools:ignore="MissingConstraints">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -27,31 +68,12 @@
                     android:id="@+id/picMain"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:padding="3dp"
                     android:scaleType="centerInside"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-                <ImageView
-                    android:id="@+id/backBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="15dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/back_navigation_icon"/>
-
-                <ImageView
-                    android:id="@+id/favBtn"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/backBtn"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/backBtn"
-                    app:srcCompat="@drawable/favourites" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/picList"
@@ -67,28 +89,28 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/titleTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textStyle="bold"
                     android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="Title"
                     android:textColor="@color/black"
                     android:textSize="22sp"
-                    android:text="Title" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/priceTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0"
                     android:layout_marginEnd="10dp"
-                    android:textSize="22sp"
-                    android:textColor="@color/black"/>
+                    android:text="$0"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -109,8 +131,8 @@
                     android:id="@+id/sellerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginStart="8dp"
+                    android:layout_weight="1"
                     android:text="Seller" />
 
                 <ImageView
@@ -139,9 +161,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textStyle="bold"
+                    android:text="Select Colour"
                     android:textColor="@color/black"
-                    android:text="Select Colour" />
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/imageView9"
@@ -154,8 +176,8 @@
                     android:id="@+id/ratingTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
-                    android:layout_marginEnd="10dp"/>
+                    android:layout_marginEnd="10dp"
+                    android:text="0" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -172,8 +194,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:textStyle="bold"
-                android:text="Description" />
+                android:text="Description"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/descriptionTxt"
@@ -189,6 +211,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:id="@+id/coordinatorLayout1"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="10dp"

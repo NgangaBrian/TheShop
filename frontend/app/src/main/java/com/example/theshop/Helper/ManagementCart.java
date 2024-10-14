@@ -39,7 +39,7 @@ public class ManagementCart {
         Toast.makeText(context, "Added to your Cart", Toast.LENGTH_SHORT).show();
     }
 
-    private ArrayList<ItemsModel> getListCart() {
+    public ArrayList<ItemsModel> getListCart() {
         return tinyDB.getListObject("CartList");
     }
 
@@ -54,7 +54,7 @@ public class ManagementCart {
     }
 
     public void plusItems(ArrayList<ItemsModel> listItems, int position, ChangeNumberItemsListener listener){
-        listItems.get(position).setNumberInCart(listItems.get(position).getNumberInCart());
+        listItems.get(position).setNumberInCart(listItems.get(position).getNumberInCart() + 1);
         tinyDB.putListObject("CartList", listItems);
         listener.onChanged();
     }

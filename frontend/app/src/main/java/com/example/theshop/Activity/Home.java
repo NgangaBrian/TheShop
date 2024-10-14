@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.theshop.Adapter.BestSellerAdapter;
 import com.example.theshop.Adapter.CategoriesAdapter;
 import com.example.theshop.Adapter.SliderAdapter;
+import com.example.theshop.Helper.ManagementCart;
 import com.example.theshop.Model.SliderModel;
 import com.example.theshop.R;
 import com.example.theshop.ViewModel.MainViewModel;
@@ -38,6 +41,7 @@ public class Home extends AppCompatActivity {
     private MainViewModel mainViewModel;
     private SliderAdapter sliderAdapter;
     private DotsIndicator dotsIndicator;
+    private LinearLayout cartBtn;
     private ProgressBar progressBarBanner, progressBarCategories, progressBarBestSeller;
     private TextView name;
     private RecyclerView recyclerViewCategories, recyclerViewBestSeller;
@@ -60,12 +64,26 @@ public class Home extends AppCompatActivity {
         recyclerViewCategories = findViewById(R.id.recyclerViewCategory);
         recyclerViewBestSeller = findViewById(R.id.recyclerBestSelling);
         name = findViewById(R.id.nametv);
+        cartBtn = findViewById(R.id.cartBtn);
         name.setText(fullname);
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         initBanners();
         initCategory();
         initBestSeller();
+
+        cartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ManagementCart managementCart = new ManagementCart(Home.this);
+                if (!managementCart.getListCart().isEmpty()){
+                    Intent intent = new Intent(Home.this, CartActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(Home.this, "Your Cart is Empty", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

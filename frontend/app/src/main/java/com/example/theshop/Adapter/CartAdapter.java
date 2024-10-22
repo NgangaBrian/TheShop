@@ -46,6 +46,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
 
         holder.titleTV.setText(item.getName());
+        holder.itemId.setText(String.valueOf(item.getId()));
         holder.feeEachItemTV.setText("Kshs " + numberFormat.format(item.getPrice()));
         holder.totalEachItemTV.setText("Kshs " + numberFormat.format(Math.round(item.getNumberInCart() * item.getPrice())));
         holder.numberItemTV.setText(String.valueOf(item.getNumberInCart()));
@@ -92,11 +93,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView titleTV, feeEachItemTV, totalEachItemTV, numberItemTV, plusBtn, minusBtn;
+        public TextView titleTV, itemId, feeEachItemTV, totalEachItemTV, numberItemTV, plusBtn, minusBtn;
         public ImageView picCart;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTV = itemView.findViewById(R.id.titleCartTxt);
+            itemId = itemView.findViewById(R.id.itemIdTxtV);
             feeEachItemTV = itemView.findViewById(R.id.feeEachItem);
             totalEachItemTV = itemView.findViewById(R.id.totalEachItem);
             numberItemTV = itemView.findViewById(R.id.numberItemTxt);

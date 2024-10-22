@@ -117,6 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Login"
+                android:foreground="?attr/selectableItemBackground"
                 android:background="@drawable/background_btn_1"
                 android:backgroundTint="@color/blue"
                 android:textColor="@color/white"

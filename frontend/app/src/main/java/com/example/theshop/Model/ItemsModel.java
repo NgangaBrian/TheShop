@@ -17,7 +17,8 @@ public class ItemsModel implements Serializable {
 
     public ItemsModel() {}
 
-    public ItemsModel(String name, String description, String imageUrl, ArrayList<String> size, double price, double rating, int numberInCart, int categoryId) {
+    public ItemsModel(Long id, String name, String description, String imageUrl, ArrayList<String> size, double price, double rating, int numberInCart, int categoryId) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.imageUrl = imageUrl;

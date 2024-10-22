@@ -45,6 +45,7 @@ public class Home extends AppCompatActivity {
     private ProgressBar progressBarBanner, progressBarCategories, progressBarBestSeller;
     private TextView name;
     private RecyclerView recyclerViewCategories, recyclerViewBestSeller;
+    public String userId;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -55,6 +56,7 @@ public class Home extends AppCompatActivity {
         Intent intent = getIntent();
         String fullname = intent.getStringExtra("fullname");
         String email = intent.getStringExtra("email");
+        userId = intent.getStringExtra("userId");
 
         viewPager21 = findViewById(R.id.viewPager2);
         dotsIndicator = findViewById(R.id.dotIndicatorBanner);
@@ -78,6 +80,7 @@ public class Home extends AppCompatActivity {
                 ManagementCart managementCart = new ManagementCart(Home.this);
                 if (!managementCart.getListCart().isEmpty()){
                     Intent intent = new Intent(Home.this, CartActivity.class);
+                    intent.putExtra("userId", userId);
                     startActivity(intent);
                 } else {
                     Toast.makeText(Home.this, "Your Cart is Empty", Toast.LENGTH_SHORT).show();
@@ -96,7 +99,7 @@ public class Home extends AppCompatActivity {
         progressBarBestSeller.setVisibility(View.VISIBLE);
         mainViewModel.getBestSeller().observe(this, items ->{
             recyclerViewBestSeller.setLayoutManager(new GridLayoutManager(this, 2));
-            recyclerViewBestSeller.setAdapter(new BestSellerAdapter(items));
+            recyclerViewBestSeller.setAdapter(new BestSellerAdapter(items, userId));
             progressBarBestSeller.setVisibility(View.GONE);
         });
         mainViewModel.loadBestSeller(getApplicationContext());

@@ -10,7 +10,8 @@
         android:id="@+id/picCart"
         android:layout_width="100dp"
         android:layout_height="match_parent"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+        tools:srcCompat="@tools:sample/backgrounds/scenic"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/titleCartTxt"
@@ -18,10 +19,34 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Title"
+        android:textSize="16dp"
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/picCart"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/itemId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Item Id : "
+        android:textColor="@color/brown"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/picCart"
+        app:layout_constraintTop_toBottomOf="@+id/titleCartTxt" />
+
+    <TextView
+        android:id="@+id/itemIdTxtV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:textColor="@color/brown"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/itemId"
+        app:layout_constraintStart_toEndOf="@+id/itemId"
+        app:layout_constraintTop_toTopOf="@+id/itemId" />
+
 
     <TextView
         android:id="@+id/feeEachItem"
@@ -32,7 +57,7 @@
         android:textColor="@color/brown"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/picCart"
-        app:layout_constraintTop_toBottomOf="@+id/titleCartTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/itemIdTxtV" />
 
     <TextView
         android:id="@+id/totalEachItem"
@@ -47,6 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/feeEachItem" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:background="@drawable/grey_bg_full_corner"

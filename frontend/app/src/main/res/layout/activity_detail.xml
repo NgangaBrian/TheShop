@@ -116,44 +116,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="16dp"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/picSeller"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    app:shapeAppearanceOverlay="@style/FullCornerImageView"
-                    tools:srcCompat="@tools:sample/avatars" />
-
                 <TextView
-                    android:id="@+id/sellerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Item Id"
                     android:layout_marginStart="8dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
                     android:layout_weight="1"
-                    android:text="Seller" />
-
-                <ImageView
-                    android:id="@+id/callToSellerBtn"
+                    />
+                <TextView
+                    android:id="@+id/itemIdTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    app:srcCompat="@drawable/baseline_call_24" />
-
-                <ImageView
-                    android:id="@+id/msgToSellerBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    app:srcCompat="@drawable/baseline_message_24" />
+                    android:text="10"
+                    android:textColor="@color/black"
+                    android:layout_weight="0"
+                    android:layout_marginEnd="10dp"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16sp"
                 android:orientation="horizontal">
 
                 <TextView

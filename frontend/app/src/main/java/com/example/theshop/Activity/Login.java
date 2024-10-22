@@ -70,6 +70,7 @@ public class Login extends AppCompatActivity {
         google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mProgressDialog.show();
                 signIn(mGoogleSignInClient);
             }
         });
@@ -106,17 +107,20 @@ public class Login extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                Log.d("User details", response.toString());
                 try {
                     String status = response.getString("status");
 
                     if("success".equals(status)) {
                         // Get values from the JSON response
                         JSONObject user = response.getJSONObject("user");
+                        String userId = user.getString("id");
                         String fullName = user.getString("fullname");
                         String email = user.getString("email");
                         Toast.makeText(Login.this, fullName + " " + email, Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(Login.this, Home.class);
+                        intent.putExtra("userId", userId);
                         intent.putExtra("fullname", fullName);
                         intent.putExtra("email", email);
                         startActivity(intent);
@@ -196,9 +200,11 @@ public class Login extends AppCompatActivity {
             checkLoginDetails(email, password, idToken, authType);
 
             Toast.makeText(this, displayName + " (" + email + ") ", Toast.LENGTH_SHORT).show();
+            mProgressDialog.dismiss();
             // Toast.makeText(this, idToken + " Hello", Toast.LENGTH_SHORT).show();
         } catch (ApiException e){
             Log.w("Login", "SignInResult:failed code=" + e.getStatusCode());
+            mProgressDialog.dismiss();
             Toast.makeText(this, "Sign-in failed, please try again", Toast.LENGTH_SHORT).show();
         }
     }

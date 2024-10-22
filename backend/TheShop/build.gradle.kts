@@ -26,6 +26,10 @@ dependencies {
 	implementation ("com.google.http-client:google-http-client-jackson2:1.40.1")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
+	compileOnly ("org.projectlombok:lombok:1.18.34")
+	implementation ("org.apache.commons:commons-text:1.12.0")
+	annotationProcessor ("org.projectlombok:lombok:1.18.34")
+	implementation ("com.squareup.okhttp3:okhttp:4.12.0")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
 }

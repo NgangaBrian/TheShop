@@ -36,7 +36,8 @@ public class DetailActivity extends AppCompatActivity {
     private ManagementCart managementCart;
     public RecyclerView picListt;
     public ImageView picMainn, back, callSeller, msgSeller, cartBtn;
-    public TextView titleTV, priceTV, ratingTV, descriptionTV, addToCart;
+    public TextView titleTV, itemIdTV, priceTV, ratingTV, descriptionTV, addToCart;
+    public String userId;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +45,17 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         titleTV = findViewById(R.id.titleTxt);
+        itemIdTV = findViewById(R.id.itemIdTxt);
         priceTV = findViewById(R.id.priceTxt);
         ratingTV = findViewById(R.id.ratingTxt);
         descriptionTV = findViewById(R.id.descriptionTxt);
         addToCart = findViewById(R.id.addToCartBtn);
         back = findViewById(R.id.backBtn);
-        callSeller = findViewById(R.id.callToSellerBtn);
-        msgSeller = findViewById(R.id.msgToSellerBtn);
         picMainn = findViewById(R.id.picMain);
         cartBtn = findViewById(R.id.cartBtn);
         picListt = findViewById(R.id.picList);
 
+        userId = getIntent().getStringExtra("userId");
         managementCart = new ManagementCart(this);
 
         getBundleExtra();
@@ -73,6 +74,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!managementCart.getListCart().isEmpty()) {
                     Intent intent = new Intent(DetailActivity.this, CartActivity.class);
+                    intent.putExtra("userId", userId);
                     startActivity(intent);
                 } else {
                     Toast.makeText(DetailActivity.this, "Your Cart is Empty", Toast.LENGTH_SHORT).show();
@@ -126,6 +128,7 @@ public class DetailActivity extends AppCompatActivity {
         item = (ItemsModel) getIntent().getSerializableExtra("object");
 
         titleTV.setText(item.getName());
+        itemIdTV.setText(String.valueOf(item.getId()));
         priceTV.setText("Ksh " + String.valueOf(item.getPrice()));
         descriptionTV.setText(item.getDescription());
     }

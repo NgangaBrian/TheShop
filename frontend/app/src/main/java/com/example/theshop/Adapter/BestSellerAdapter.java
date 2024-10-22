@@ -24,9 +24,11 @@ import java.util.List;
 public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.ViewHolder> {
     private List<ItemsModel> items;
     private Context context;
+    private String userId;
 
-    public BestSellerAdapter(List<ItemsModel> items) {
+    public BestSellerAdapter(List<ItemsModel> items, String userId) {
         this.items = items;
+        this.userId = userId;
     }
 
     @NonNull
@@ -53,6 +55,7 @@ public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.Vi
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra("object", item);
+                intent.putExtra("userId", userId);
                 context.startActivity(intent);
             }
         });

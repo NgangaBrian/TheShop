@@ -29,6 +29,7 @@ dependencies {
 	compileOnly ("org.projectlombok:lombok:1.18.34")
 	implementation ("org.apache.commons:commons-text:1.12.0")
 	annotationProcessor ("org.projectlombok:lombok:1.18.34")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.14.0")
 	implementation ("com.squareup.okhttp3:okhttp:4.12.0")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
@@ -36,4 +37,11 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+tasks.bootJar{
+	enabled = true
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+	archiveFileName.set("TheShop.jar")
 }

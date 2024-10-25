@@ -12,6 +12,9 @@ public class ItemItem{
 	@JsonProperty("Name")
 	private String name;
 
-	public ItemItem(String phoneNumber, String number) {
+	public ItemItem() {}
+	public ItemItem(String value, String name) {
+		this.name = name;
+		this.value = value;
 	}
 }

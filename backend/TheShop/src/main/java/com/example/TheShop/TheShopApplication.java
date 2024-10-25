@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 public class TheShopApplication {
 
 	public static void main(String[] args) {
+		System.out.println("Hello World");
 		SpringApplication.run(TheShopApplication.class, args);
 	}
 

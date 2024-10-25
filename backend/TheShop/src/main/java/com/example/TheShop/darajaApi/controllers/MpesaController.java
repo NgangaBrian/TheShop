@@ -2,7 +2,9 @@ package com.example.TheShop.darajaApi.controllers;
 
 import com.example.TheShop.darajaApi.dtos.*;
 import com.example.TheShop.darajaApi.services.DarajaApi;
+import com.example.TheShop.darajaApi.dtos.OrdersModel;
 import com.example.TheShop.database.models.Payments;
+import com.example.TheShop.database.repository.OrderRepository;
 import com.example.TheShop.database.repository.PaymentRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.TheShop.darajaApi.utils.HelperUtility.logResponseToFile;
 
@@ -25,12 +29,14 @@ public class MpesaController {
     private final AcknowledgeResponse acknowledgeResponse;
     public final ObjectMapper objectMapper;
     private final PaymentRepository paymentRepository;
+    private final OrderRepository orderRepository;
 
-    public MpesaController(DarajaApi darajaApi, AcknowledgeResponse acknowledgeResponse, ObjectMapper objectMapper, PaymentRepository paymentRepository) {
+    public MpesaController(DarajaApi darajaApi, AcknowledgeResponse acknowledgeResponse, ObjectMapper objectMapper, PaymentRepository paymentRepository, OrderRepository orderRepository) {
         this.darajaApi = darajaApi;
         this.acknowledgeResponse = acknowledgeResponse;
         this.objectMapper = objectMapper;
         this.paymentRepository = paymentRepository;
+        this.orderRepository = orderRepository;
     }
 
     @GetMapping(value = "/token", produces = "application/json")
@@ -145,14 +151,18 @@ Internal Request
 
     @SneakyThrows
     @PostMapping(path = "/stk-transaction-result", produces = "application/json")
-    public ResponseEntity<AcknowledgeResponse> acknowledgeSTKResponse (@RequestBody STKPushAsynchronousResponse stkPushAsynchronousResponse){
+    public ResponseEntity<AcknowledgeResponse> acknowledgeSTKResponse (@RequestBody AcknowledgeResponseForOrders request){
+
+        STKPushAsynchronousResponse stkPushAsynchronousResponse = request.getStkPushAsynchronousResponse();
+        OrdersModel ordersModel = request.getOrdersModel();
+
         log.info("==========STK Push Async Response============");
         String rawCallbackResponse = objectMapper.writeValueAsString(stkPushAsynchronousResponse);
         log.info("Mpesa raw callback response"+rawCallbackResponse);
 
         logResponseToFile(rawCallbackResponse);
 
-        Long userId = null;
+        Long userId = ordersModel.getCustomer_id();
         String merchantRequestID = stkPushAsynchronousResponse.getBody().getStkCallback().getMerchantRequestID();
         String checkoutRequestID = stkPushAsynchronousResponse.getBody().getStkCallback().getCheckoutRequestID();
         int resultCode = stkPushAsynchronousResponse.getBody().getStkCallback().getResultCode();
@@ -200,20 +210,41 @@ Internal Request
             log.info("Transaction Successful");
             // Further processing like updating the database or notifying the user that transaction is successful
             Payments payments = new Payments();
-            payments.setUserId(userId);
+            payments.setUser_id(userId);
             payments.setAmount(amount);
-            payments.setMerchantRequestID(merchantRequestID);
-            payments.setCheckoutRequestID(checkoutRequestID);
-            payments.setFirstName(firstName);
-            payments.setMiddleName(middleName);
-            payments.setLastName(lastName);
-            payments.setResultCode(resultCode);
-            payments.setResultDesc(resultDesc);
-            payments.setPhoneNumber(phoneNumer);
-            payments.setTransactionId(transId);
-            payments.setTransactionTime(transTime);
+            payments.setMarchant_request_id(merchantRequestID);
+            payments.setCheckout_request_id(checkoutRequestID);
+            payments.setFirst_name(firstName);
+            payments.setMiddle_name(middleName);
+            payments.setLast_name(lastName);
+            payments.setResult_code(resultCode);
+            payments.setResult_desc(resultDesc);
+            payments.setPhone_number(phoneNumer);
+            payments.setTrans_id(transId);
+            payments.setTrans_time(transTime);
 
-            paymentRepository.save(payments);
+            Payments savedPayment = paymentRepository.save(payments);
+            Long paymentId = savedPayment.getId();
+
+            OrdersModel newOrder = new OrdersModel();
+            newOrder.setPayment_id(paymentId);
+            newOrder.setCustomer_id(ordersModel.getCustomer_id());
+
+            List<ProductsItem> products = ordersModel.getProducts();
+            List<ProductsItem> productsListToSave = new ArrayList<>();
+            for (ProductsItem productsItem : products){
+                ProductsItem newProductItem = new ProductsItem();
+                newProductItem.setOrders(newOrder);
+                newProductItem.setProduct_id(productsItem.getProduct_id());
+                newProductItem.setQuantity(productsItem.getQuantity());
+
+                log.info("Product ID: " + productsItem.getProduct_id() + ", Quantity: " + productsItem.getQuantity());
+
+                productsListToSave.add(newProductItem);
+
+            }
+            newOrder.setProducts(productsListToSave);
+            orderRepository.save(newOrder);
         } else {
             log.info("Transaction Failed");
             // Further processing, like telling the user transaction failed

@@ -18,6 +18,13 @@ public class ItemsModel {
     public ItemsModel() {
     }
 
+    @Override
+    public String toString() {
+        return "ItemsModel [products_id=" + products_id + ", product_name=" + product_name +
+                ", product_description=" + product_description + ", image_url=" + image_url +
+                ", product_price=" + product_price + ", subcategory_id=" + subcategory_id + "]";
+    }
+
     public ItemsModel(Long products_id, String product_name, String product_description, String image_url, Double product_price, int subcategory_id) {
         this.products_id = products_id;
         this.product_name = product_name;

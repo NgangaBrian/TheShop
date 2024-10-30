@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.theshop.Model.CategoryModel;
 import com.example.theshop.Model.ItemsModel;
@@ -25,7 +26,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MainViewModel extends ViewModel {
 
@@ -50,6 +53,8 @@ public class MainViewModel extends ViewModel {
     public LiveData<List<ItemsModel>> getBestSeller(){
         return  _bestSeller;
     }
+    private boolean isLoading = false;
+    public List<ItemsModel> itemModelList = new ArrayList<>();
 
     public void loadSlider(Context context){
 
@@ -132,19 +137,31 @@ public class MainViewModel extends ViewModel {
 
     }
 
-    public void loadBestSeller(Context context){
-        String url = "http://192.168.43.233:8080/api/v1/items";
+    public void loadBestSeller(Context context, int currentPage, int pageSize, boolean clearPrevious){
+        System.out.println(currentPage);
+        if (isLoading) return;
+        isLoading = true;
+        String url = "http://192.168.43.233:8080/api/v1/items?page=" + currentPage +"&size=" + pageSize;
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(JSONObject response) {
                 Log.d("JSON Response", response.toString());
                 try {
-                    List<ItemsModel> itemModelList = new ArrayList<>();
-                    for(int i = 0; i < response.length(); i++){
-                        JSONObject itemsJson = response.getJSONObject(i);
+                    JSONArray products = response.getJSONArray("content");
+                    List<ItemsModel> newItems = new ArrayList<>();
+                    Set<Long> existingIds = new HashSet<>();
+
+                    if (_bestSeller.getValue() != null){
+                        for (ItemsModel item : _bestSeller.getValue()){
+                            existingIds.add(item.getId());
+                        }
+                    }
+
+                    for(int i = 0; i < products.length(); i++){
+                        JSONObject itemsJson = products.getJSONObject(i);
 
                         ItemsModel itemsModel = new ItemsModel();
                         itemsModel.setId(itemsJson.getLong("product_id"));
@@ -153,14 +170,25 @@ public class MainViewModel extends ViewModel {
                         itemsModel.setDescription(itemsJson.getString("product_description"));
                         itemsModel.setPrice(itemsJson.getDouble("product_price"));
 
-                        itemModelList.add(itemsModel);
+                        if(!existingIds.contains(itemsModel.getId())) {
+                            newItems.add(itemsModel);
+                        }
 
                     }
-                    _bestSeller.setValue(itemModelList);
+                    if(clearPrevious)
+                    if (_bestSeller.getValue() == null) {
+                        _bestSeller.setValue(newItems);
+                    } else {
+                        List<ItemsModel> currentItems = new ArrayList<>(_bestSeller.getValue());
+                        currentItems.addAll(newItems);
+                        _bestSeller.setValue(currentItems);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     e.getMessage();
                     Toast.makeText(context, "Cannot retrieve image url", Toast.LENGTH_SHORT).show();
+                } finally {
+                    isLoading = false;
                 }
             }
         }, new Response.ErrorListener() {
@@ -169,6 +197,7 @@ public class MainViewModel extends ViewModel {
                 error.printStackTrace();
                 error.getMessage();
                 Toast.makeText(context, "Faileddd!!!", Toast.LENGTH_SHORT).show();
+                isLoading = false;
             }
         });
         requestQueue.add(jsonArrayRequest);

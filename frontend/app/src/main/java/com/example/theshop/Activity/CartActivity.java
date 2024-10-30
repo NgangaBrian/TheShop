@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -30,13 +31,16 @@ import com.android.volley.toolbox.Volley;
 import com.example.theshop.Adapter.CartAdapter;
 import com.example.theshop.Helper.ChangeNumberItemsListener;
 import com.example.theshop.Helper.ManagementCart;
+import com.example.theshop.Model.ItemsModel;
 import com.example.theshop.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class CartActivity extends AppCompatActivity {
@@ -157,14 +161,12 @@ public class CartActivity extends AppCompatActivity {
                     String responseCode = response.getString("ResponseCode");
                     if(responseCode.equals("0")){
                         Toast.makeText(CartActivity.this, "Please wait to enter your Mpesa pin", Toast.LENGTH_SHORT).show();
-                        mProgressDialog.dismiss();
-                        popupWindow.dismiss();
 
                     } else {
                         Toast.makeText(CartActivity.this, "Failed. Please try again", Toast.LENGTH_SHORT).show();
-                        mProgressDialog.dismiss();
-                        popupWindow.dismiss();
                     }
+                    mProgressDialog.dismiss();
+                    popupWindow.dismiss();
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 } } else {
@@ -183,6 +185,53 @@ public class CartActivity extends AppCompatActivity {
         });
 
         requestQueue.add(jsonObjectRequest);
+    }
+    private void sendOrderData(){
+        List<ItemsModel> cartItems = managementCart.getListCart();
+
+        RequestQueue requestQueue = Volley.newRequestQueue(CartActivity.this);
+
+        String url = "http://192.168.43.233:8080/mobile-money/stk-transaction-result";
+
+        JSONObject ordersModel = new JSONObject();
+        try {
+            ordersModel.put("paymentId", JSONObject.NULL);
+            ordersModel.put("customerId", userId);
+            ordersModel.put("id", JSONObject.NULL);
+            ordersModel.put("orderDate", JSONObject.NULL);
+
+            JSONArray productsArray = new JSONArray();
+            for (ItemsModel itemsModel : cartItems){
+                JSONObject productJson = new JSONObject();
+                productJson.put("quantity", itemsModel.getNumberInCart());
+                productJson.put("productId", itemsModel.getId());
+                productsArray.put(productJson);
+            }
+
+            ordersModel.put("products", productsArray);
+
+
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, ordersModel, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d("Order Sent", "Order sent Succesfully");
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Order Not Sent", "Order not sent");
+                error.printStackTrace();
+                error.getMessage();
+            }
+        });
+
+        requestQueue.add(jsonObjectRequest);
+
+
     }
 
     private void initCartList() {

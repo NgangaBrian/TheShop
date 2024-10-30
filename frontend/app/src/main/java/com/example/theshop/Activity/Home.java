@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -46,6 +47,9 @@ public class Home extends AppCompatActivity {
     private TextView name;
     private RecyclerView recyclerViewCategories, recyclerViewBestSeller;
     public String userId;
+
+    public int currentPage = 0;
+    public int  pageSize = 10;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -95,14 +99,35 @@ public class Home extends AppCompatActivity {
         decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
-    private void initBestSeller() {
+    @SuppressLint("NotifyDataSetChanged")
+    public void initBestSeller() {
         progressBarBestSeller.setVisibility(View.VISIBLE);
         mainViewModel.getBestSeller().observe(this, items ->{
-            recyclerViewBestSeller.setLayoutManager(new GridLayoutManager(this, 2));
-            recyclerViewBestSeller.setAdapter(new BestSellerAdapter(items, userId));
+            BestSellerAdapter adapter = new BestSellerAdapter(items, userId);
+            if(recyclerViewBestSeller.getAdapter() == null) {
+
+                recyclerViewBestSeller.setLayoutManager(new GridLayoutManager(this, 2));
+                recyclerViewBestSeller.setAdapter(adapter);
+
+                recyclerViewBestSeller.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                        super.onScrolled(recyclerView, dx, dy);
+                        LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                        if (layoutManager != null && layoutManager.findLastCompletelyVisibleItemPosition() == adapter.getItemCount() - 1) {
+                            currentPage++;
+                            mainViewModel.loadBestSeller(getApplicationContext(), currentPage, pageSize, true);
+                            Toast.makeText(Home.this, "The End!!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            } else {
+                ((BestSellerAdapter) recyclerViewBestSeller.getAdapter()).addItems(items, true);
+                ((BestSellerAdapter) recyclerViewBestSeller.getAdapter()).notifyDataSetChanged();
+            }
             progressBarBestSeller.setVisibility(View.GONE);
         });
-        mainViewModel.loadBestSeller(getApplicationContext());
+        mainViewModel.loadBestSeller(getApplicationContext(), currentPage, pageSize, true);
     }
 
     private void initCategory() {

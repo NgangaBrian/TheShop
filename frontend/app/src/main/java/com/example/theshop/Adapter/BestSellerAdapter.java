@@ -62,6 +62,14 @@ public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.Vi
 
     }
 
+    public void addItems(List<ItemsModel> newItems, boolean clearPrevious){
+        if(clearPrevious){
+            items.clear();
+        }
+        items.addAll(newItems);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
 

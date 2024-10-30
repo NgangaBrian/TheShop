@@ -7,7 +7,10 @@ import com.example.TheShop.database.services.ItemsService;
 import com.example.TheShop.database.services.UserService;
 import com.example.TheShop.database.utils.GoogleTokenVerifier;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -17,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1")
 public class MySQLController {
@@ -150,7 +154,18 @@ public class MySQLController {
     }
 
     @GetMapping("/items")
-    public List<ItemsModel> getAllItems() {
-        return itemsService.getAllItems();
+    public ResponseEntity<Page<ItemsModel>> getAllItems(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "0") int size) {
+
+        Pageable pageable = PageRequest.of(page, size);
+        Page<ItemsModel> pagedResult = itemsService.getAllItems(pageable);
+        log.info("Preparing to return response");
+        log.info("Paged Result: {}", pagedResult);
+        pagedResult.getContent().forEach(item -> log.info("Product: {}", item));
+
+        ResponseEntity<Page<ItemsModel>> broo = ResponseEntity.ok(pagedResult);
+        log.info("Response Entity created: {}", broo);
+        return broo;
     }
 }

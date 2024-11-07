@@ -160,12 +160,6 @@ public class MySQLController {
 
         Pageable pageable = PageRequest.of(page, size);
         Page<ItemsModel> pagedResult = itemsService.getAllItems(pageable);
-        log.info("Preparing to return response");
-        log.info("Paged Result: {}", pagedResult);
-        pagedResult.getContent().forEach(item -> log.info("Product: {}", item));
-
-        ResponseEntity<Page<ItemsModel>> broo = ResponseEntity.ok(pagedResult);
-        log.info("Response Entity created: {}", broo);
-        return broo;
+        return ResponseEntity.ok(pagedResult);
     }
 }

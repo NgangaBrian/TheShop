@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -45,6 +47,8 @@ public class Home extends AppCompatActivity {
     private LinearLayout cartBtn;
     private ProgressBar progressBarBanner, progressBarCategories, progressBarBestSeller;
     private TextView name;
+    private EditText searchET;
+    private Button search;
     private RecyclerView recyclerViewCategories, recyclerViewBestSeller;
     public String userId;
 
@@ -69,6 +73,8 @@ public class Home extends AppCompatActivity {
         progressBarBestSeller = findViewById(R.id.progressBestSell);
         recyclerViewCategories = findViewById(R.id.recyclerViewCategory);
         recyclerViewBestSeller = findViewById(R.id.recyclerBestSelling);
+        search = findViewById(R.id.searchBtn);
+        searchET = findViewById(R.id.searchEditText);
         name = findViewById(R.id.nametv);
         cartBtn = findViewById(R.id.cartBtn);
         name.setText(fullname);
@@ -88,6 +94,21 @@ public class Home extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Toast.makeText(Home.this, "Your Cart is Empty", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String keyword = searchET.getText().toString();
+                if (!keyword.isEmpty()){
+                    Intent intent = new Intent(Home.this, SearchResults.class);
+                    intent.putExtra("keyword", keyword);
+                    intent.putExtra("userId", userId);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(Home.this, "Search Field is Empty", Toast.LENGTH_SHORT).show();
                 }
             }
         });

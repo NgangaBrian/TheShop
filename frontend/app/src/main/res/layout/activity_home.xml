@@ -54,9 +54,11 @@
               app:layout_constraintTop_toBottomOf="@+id/welcometv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+          <RelativeLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/searchEditText"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="24dp"
@@ -72,6 +74,24 @@
             android:padding="8dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:text="Go"
+                android:id="@+id/searchBtn"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@drawable/background_btn_1"
+                android:backgroundTint="@color/blue"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                android:layout_alignTop="@+id/searchEditText"
+                android:layout_alignEnd="@+id/searchEditText"
+                android:layout_alignBottom="@+id/searchEditText"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp" />
+          </RelativeLayout>
       </LinearLayout>
 
       <androidx.constraintlayout.widget.ConstraintLayout

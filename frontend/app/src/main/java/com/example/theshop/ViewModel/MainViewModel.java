@@ -1,11 +1,9 @@
 package com.example.theshop.ViewModel;
 
 import android.content.Context;
-import android.database.DatabaseErrorHandler;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -19,6 +17,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.theshop.Model.CategoryModel;
 import com.example.theshop.Model.ItemsModel;
+import com.example.theshop.Model.OrderedProductsItem;
+import com.example.theshop.Model.OrdersModel;
+import com.example.theshop.Model.OrdersModelItem;
 import com.example.theshop.Model.SliderModel;
 
 import org.json.JSONArray;
@@ -36,6 +37,7 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<List<SliderModel>> _slider = new MutableLiveData<>();
     private MutableLiveData<List<CategoryModel>> _category = new MutableLiveData<>();
     private MutableLiveData<List<ItemsModel>> _bestSeller = new MutableLiveData<>();
+    private MutableLiveData<List<OrdersModel>> _orders = new MutableLiveData<>();
 
 
     public MainViewModel(){}
@@ -53,6 +55,7 @@ public class MainViewModel extends ViewModel {
     public LiveData<List<ItemsModel>> getBestSeller(){
         return  _bestSeller;
     }
+    public LiveData<List<OrdersModel>> getOrders(){return _orders;}
     private boolean isLoading = false;
     public List<ItemsModel> itemModelList = new ArrayList<>();
 
@@ -202,5 +205,74 @@ public class MainViewModel extends ViewModel {
         });
         requestQueue.add(jsonArrayRequest);
 
+    }
+
+    public void loadOrders(Context context, String userId){
+        String url = "http://192.168.43.233:8080/api/v1/orders/" + userId;
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(Request.Method.GET, url, null, response -> {
+            Log.d("JsonResponse", response.toString());
+            try {
+                List<OrdersModelItem> ordersList = new ArrayList<>();
+
+                // Iterate over each order object in the response
+                for (int i = 0; i < response.length(); i++) {
+                    JSONObject orderObject = response.getJSONObject(i);
+
+                    // Extract basic order details
+                    int orderId = orderObject.getInt("orderId");
+                    String orderDate = orderObject.getString("orderDate");
+                    int paymentId = orderObject.getInt("paymentId");
+                    double amountPaid = orderObject.getDouble("amountPaid");
+
+                    List<OrderedProductsItem> orderedProductsList = new ArrayList<>();
+
+                    // Get the orderedProducts array
+                    JSONArray orderedProductsArray = orderObject.getJSONArray("orderedProducts");
+
+                    // Iterate over each product in orderedProducts
+                    for (int j = 0; j < orderedProductsArray.length(); j++) {
+                        JSONObject productObject = orderedProductsArray.getJSONObject(j);
+
+                        int productId = productObject.getInt("productId");
+                        int quantity = productObject.getInt("quantity");
+                        String productName = productObject.getString("productName");
+                        String imageUrl = productObject.getString("imageUrl");
+
+                        // Create an OrderedProductsModel instance
+                        OrderedProductsItem orderedProduct = new OrderedProductsItem(
+                                productId, quantity, productName, imageUrl
+                        );
+
+                        // Add orderedProduct to the list
+                        orderedProductsList.add(orderedProduct);
+                    }
+
+                    // Set the ordered products list to the current order
+                    OrdersModelItem order = new OrdersModelItem(orderId, orderDate, paymentId, amountPaid, orderedProductsList);
+
+                    // Add order to the main list
+                    ordersList.add(order);
+                }
+
+                // Log the parsed orders for debugging purposes
+                for (OrdersModelItem order : ordersList) {
+                    Log.d("Order", order.toString());
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.e("JsonParseError", "Error parsing order data", e);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("VolleyError", "Erroe loading orders", error);
+            }
+        });
+
+        requestQueue.add(jsonObjectRequest);
     }
 }

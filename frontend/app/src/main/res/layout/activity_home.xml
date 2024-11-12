@@ -341,6 +341,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:id="@+id/myOrdersBtn"
             android:layout_weight="0.2"
             android:foreground="?attr/selectableItemBackground"
             android:orientation="vertical">

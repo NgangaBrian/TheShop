@@ -1,6 +1,8 @@
 package com.example.TheShop.database.models;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -10,7 +12,7 @@ import java.util.Date;
 public class User {
 
     @Id
-    private int id;
+    private Long id;
     private String fullname;
 
     @Column(nullable = false, unique = true)
@@ -26,6 +28,11 @@ public class User {
 
     public User() {}
 
+    @JsonCreator
+    public User(@JsonProperty("id") Long id){
+        this.id = id;
+    }
+
     public User(String fullname, String email, String password, String googleId, String authType) {
         this.fullname = fullname;
         this.email = email;
@@ -34,11 +41,11 @@ public class User {
         this.authType = authType;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int userId) {
+    public void setId(Long userId) {
         this.id = userId;
     }
 

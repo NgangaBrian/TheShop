@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends CrudRepository <User, Integer> {
+public interface UserRepository extends CrudRepository <User, Long> {
 
     // Check if a user email exists in the system
     @Query(value = "select email from users where email = :email", nativeQuery = true)

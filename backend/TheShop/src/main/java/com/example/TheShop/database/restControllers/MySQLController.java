@@ -1,10 +1,7 @@
 package com.example.TheShop.database.restControllers;
 
 import com.example.TheShop.database.models.*;
-import com.example.TheShop.database.services.BannerSliderService;
-import com.example.TheShop.database.services.CategoriesService;
-import com.example.TheShop.database.services.ItemsService;
-import com.example.TheShop.database.services.UserService;
+import com.example.TheShop.database.services.*;
 import com.example.TheShop.database.utils.GoogleTokenVerifier;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import lombok.extern.slf4j.Slf4j;
@@ -30,13 +27,15 @@ public class MySQLController {
     private CategoriesService categoriesService;
     private ItemsService itemsService;
     private UserService userService;
+    private OrderService orderService;
 
 
-    public MySQLController(UserService userService, ItemsService itemsService, CategoriesService categoriesService, BannerSliderService bannerSliderService) {
+    public MySQLController(UserService userService, ItemsService itemsService, CategoriesService categoriesService, BannerSliderService bannerSliderService, OrderService orderService) {
         this.userService = userService;
         this.itemsService = itemsService;
         this.categoriesService = categoriesService;
         this.bannerSliderService = bannerSliderService;
+        this.orderService = orderService;
     }
 
 
@@ -161,5 +160,10 @@ public class MySQLController {
         Pageable pageable = PageRequest.of(page, size);
         Page<ItemsModel> pagedResult = itemsService.getAllItems(pageable);
         return ResponseEntity.ok(pagedResult);
+    }
+
+    @GetMapping("/orders/{customerId}")
+    public List<OrderDTO> getOrdersByCustomerId(@PathVariable Long customerId) {
+        return orderService.getOrderByCustomerId(customerId);
     }
 }

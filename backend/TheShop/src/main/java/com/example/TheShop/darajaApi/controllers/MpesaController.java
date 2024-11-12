@@ -3,9 +3,13 @@ package com.example.TheShop.darajaApi.controllers;
 import com.example.TheShop.darajaApi.dtos.*;
 import com.example.TheShop.darajaApi.services.DarajaApi;
 import com.example.TheShop.darajaApi.dtos.OrdersModel;
+import com.example.TheShop.database.models.ItemsModel;
 import com.example.TheShop.database.models.Payments;
+import com.example.TheShop.database.models.User;
+import com.example.TheShop.database.repository.ItemsRepository;
 import com.example.TheShop.database.repository.OrderRepository;
 import com.example.TheShop.database.repository.PaymentRepository;
+import com.example.TheShop.database.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -30,13 +34,17 @@ public class MpesaController {
     public final ObjectMapper objectMapper;
     private final PaymentRepository paymentRepository;
     private final OrderRepository orderRepository;
+    private final ItemsRepository itemsRepository;
+    private final UserRepository userRepository;
 
-    public MpesaController(DarajaApi darajaApi, AcknowledgeResponse acknowledgeResponse, ObjectMapper objectMapper, PaymentRepository paymentRepository, OrderRepository orderRepository) {
+    public MpesaController(DarajaApi darajaApi, AcknowledgeResponse acknowledgeResponse, ObjectMapper objectMapper, PaymentRepository paymentRepository, OrderRepository orderRepository, ItemsRepository itemsRepository, UserRepository userRepository) {
         this.darajaApi = darajaApi;
         this.acknowledgeResponse = acknowledgeResponse;
         this.objectMapper = objectMapper;
         this.paymentRepository = paymentRepository;
         this.orderRepository = orderRepository;
+        this.itemsRepository = itemsRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping(value = "/token", produces = "application/json")
@@ -156,13 +164,14 @@ Internal Request
         STKPushAsynchronousResponse stkPushAsynchronousResponse = request.getStkPushAsynchronousResponse();
         OrdersModel ordersModel = request.getOrdersModel();
 
+
         log.info("==========STK Push Async Response============");
         String rawCallbackResponse = objectMapper.writeValueAsString(stkPushAsynchronousResponse);
         log.info("Mpesa raw callback response"+rawCallbackResponse);
 
         logResponseToFile(rawCallbackResponse);
 
-        Long userId = ordersModel.getCustomer_id();
+        Long userId = ordersModel.getCustomer().getId();
         String merchantRequestID = stkPushAsynchronousResponse.getBody().getStkCallback().getMerchantRequestID();
         String checkoutRequestID = stkPushAsynchronousResponse.getBody().getStkCallback().getCheckoutRequestID();
         int resultCode = stkPushAsynchronousResponse.getBody().getStkCallback().getResultCode();
@@ -208,6 +217,9 @@ Internal Request
 
         if(resultCode == 0){
             log.info("Transaction Successful");
+
+            User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Customer not found"));
+
             // Further processing like updating the database or notifying the user that transaction is successful
             Payments payments = new Payments();
             payments.setUser_id(userId);
@@ -228,19 +240,25 @@ Internal Request
 
             OrdersModel newOrder = new OrdersModel();
             newOrder.setPayment_id(paymentId);
-            newOrder.setCustomer_id(ordersModel.getCustomer_id());
+            newOrder.setCustomer(user);
 
             List<ProductsItem> products = ordersModel.getProducts();
             List<ProductsItem> productsListToSave = new ArrayList<>();
             for (ProductsItem productsItem : products){
-                ProductsItem newProductItem = new ProductsItem();
-                newProductItem.setOrders(newOrder);
-                newProductItem.setProduct_id(productsItem.getProduct_id());
-                newProductItem.setQuantity(productsItem.getQuantity());
+                ItemsModel itemsModel = itemsRepository.findById(productsItem.getItemsModel().getProduct_id()).orElse(null);
 
-                log.info("Product ID: " + productsItem.getProduct_id() + ", Quantity: " + productsItem.getQuantity());
+                if (itemsModel != null) {
+                    ProductsItem newProductItem = new ProductsItem();
+                    newProductItem.setOrders(newOrder);
+                    newProductItem.setItemsModel(itemsModel);
+                    newProductItem.setQuantity(productsItem.getQuantity());
 
-                productsListToSave.add(newProductItem);
+                    log.info("Product ID: " + itemsModel.getProduct_id() + ", Quantity: " + productsItem.getQuantity());
+
+                    productsListToSave.add(newProductItem);
+                } else {
+                    log.error("Item with Product ID" + productsItem.getItemsModel().getProduct_id() + " not found");
+                }
 
             }
             newOrder.setProducts(productsListToSave);

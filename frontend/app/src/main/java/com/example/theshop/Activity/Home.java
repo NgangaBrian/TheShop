@@ -44,7 +44,7 @@ public class Home extends AppCompatActivity {
     private MainViewModel mainViewModel;
     private SliderAdapter sliderAdapter;
     private DotsIndicator dotsIndicator;
-    private LinearLayout cartBtn;
+    private LinearLayout cartBtn, myOrdersBtn;
     private ProgressBar progressBarBanner, progressBarCategories, progressBarBestSeller;
     private TextView name;
     private EditText searchET;
@@ -77,6 +77,7 @@ public class Home extends AppCompatActivity {
         searchET = findViewById(R.id.searchEditText);
         name = findViewById(R.id.nametv);
         cartBtn = findViewById(R.id.cartBtn);
+        myOrdersBtn = findViewById(R.id.myOrdersBtn);
         name.setText(fullname);
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
@@ -95,6 +96,15 @@ public class Home extends AppCompatActivity {
                 } else {
                     Toast.makeText(Home.this, "Your Cart is Empty", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        myOrdersBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, MyOrders.class);
+                intent.putExtra("userId", userId);
+                startActivity(intent);
             }
         });
 

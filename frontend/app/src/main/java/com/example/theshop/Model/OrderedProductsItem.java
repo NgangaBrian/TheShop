@@ -7,6 +7,10 @@ public class OrderedProductsItem{
 	private String productName;
 
 	public OrderedProductsItem(int productId, int quantity, String productName, String imageUrl) {
+		this.productId = productId;
+		this.quantity = quantity;
+		this.productName = productName;
+		this.imageUrl = imageUrl;
 	}
 
 	public void setQuantity(Integer quantity){

@@ -18,7 +18,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.theshop.Model.CategoryModel;
 import com.example.theshop.Model.ItemsModel;
 import com.example.theshop.Model.OrderedProductsItem;
-import com.example.theshop.Model.OrdersModel;
 import com.example.theshop.Model.OrdersModelItem;
 import com.example.theshop.Model.SliderModel;
 
@@ -37,7 +36,7 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<List<SliderModel>> _slider = new MutableLiveData<>();
     private MutableLiveData<List<CategoryModel>> _category = new MutableLiveData<>();
     private MutableLiveData<List<ItemsModel>> _bestSeller = new MutableLiveData<>();
-    private MutableLiveData<List<OrdersModel>> _orders = new MutableLiveData<>();
+    private MutableLiveData<List<OrdersModelItem>> _orders = new MutableLiveData<List<OrdersModelItem>>();
 
 
     public MainViewModel(){}
@@ -55,9 +54,9 @@ public class MainViewModel extends ViewModel {
     public LiveData<List<ItemsModel>> getBestSeller(){
         return  _bestSeller;
     }
-    public LiveData<List<OrdersModel>> getOrders(){return _orders;}
+    public LiveData<List<OrdersModelItem>> getOrders(){return _orders;}
     private boolean isLoading = false;
-    public List<ItemsModel> itemModelList = new ArrayList<>();
+    public List<OrdersModelItem> itemModelList = new ArrayList<>();
 
     public void loadSlider(Context context){
 
@@ -254,7 +253,8 @@ public class MainViewModel extends ViewModel {
                     OrdersModelItem order = new OrdersModelItem(orderId, orderDate, paymentId, amountPaid, orderedProductsList);
 
                     // Add order to the main list
-                    ordersList.add(order);
+                    itemModelList.add(order);
+                    _orders.setValue(itemModelList);
                 }
 
                 // Log the parsed orders for debugging purposes

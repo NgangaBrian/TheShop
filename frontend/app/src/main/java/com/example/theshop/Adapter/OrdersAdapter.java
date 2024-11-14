@@ -20,14 +20,14 @@ import com.example.theshop.R;
 import java.util.List;
 
 public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder> {
-    private List<OrdersModel> ordersModelList;
+    private List<OrdersModelItem> ordersModelList;
     private Context context;
 
-    public OrdersAdapter(List<OrdersModel> ordersModelList) {
+    public OrdersAdapter(List<OrdersModelItem> ordersModelList) {
         this.ordersModelList = ordersModelList;
     }
 
-    public void setOrdersList(List<OrdersModel> ordersModelList){
+    public void setOrdersList(List<OrdersModelItem> ordersModelList){
         this.ordersModelList=ordersModelList;
         notifyDataSetChanged();
     }
@@ -42,21 +42,36 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull OrdersAdapter.ViewHolder holder, int position) {
-        OrdersModelItem ordersModelItem = ordersModelList.get(position).getOrdersModel().get(0);
+        OrdersModelItem ordersModelItem = ordersModelList.get(position);
+        if(ordersModelItem != null){
         Log.d("OrdersAdapter", "Binding order: " + ordersModelItem.getOrderId());
-        holder.orderDatee.setText(ordersModelItem.getOrderDate());
-        holder.amountPaidd.setText(String.valueOf(ordersModelItem.getAmountPaid()));
-        holder.orderNumberr.setText(ordersModelItem.getOrderId());
+        holder.orderDatee.setText(ordersModelItem.getOrderDate() != null ? ordersModelItem.getOrderDate() : "N/A");
+            holder.amountPaidd.setText(String.valueOf(ordersModelItem.getAmountPaid()) != null ?
+                    String.valueOf(ordersModelItem.getAmountPaid()) : "0");
+        holder.orderNumberr.setText(String.valueOf(ordersModelItem.getOrderId()) != null ?
+                String.valueOf(ordersModelItem.getOrderId()) : "N/A");
 
         List<OrderedProductsItem> orderedProductsItems = ordersModelItem.getOrderedProducts();
+        if (orderedProductsItems != null && !orderedProductsItems.isEmpty()){
         OrderedProductsItem firstProduct = orderedProductsItems.get(0);
-        holder.itemNamee.setText(firstProduct.getProductName());
-        holder.quantityy.setText(firstProduct.getQuantity());
+        holder.itemNamee.setText(firstProduct.getProductName() != null ? firstProduct.getProductName() : "N/A");
+        holder.quantityy.setText(firstProduct.getQuantity() != null ?
+                String.valueOf(firstProduct.getQuantity()) : "0");
 
-        Glide.with(context)
-                .load(firstProduct.getImageUrl())
-                .into(holder.imageVieww);
+            String imageUrl = firstProduct.getImageUrl();
+            if (imageUrl != null && !imageUrl.isEmpty()) {
+                Glide.with(context).load(imageUrl).into(holder.imageVieww);
+            } else {
+                 // Use a placeholder if the URL is null
+                Log.d("Null Image Url", "Image Url is null");
+            }
 
+        } else {
+            Log.d("Null OrderedProductsItem", "OrdersProductsItem is null");
+        }
+        } else {
+            Log.d("Null OrdersModelItem", "OrdersModelItem is null");
+        }
     }
 
     @Override

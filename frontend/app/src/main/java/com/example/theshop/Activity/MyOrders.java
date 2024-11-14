@@ -43,9 +43,9 @@ public class MyOrders extends AppCompatActivity {
 
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
-        mainViewModel.getOrders().observe(this, new Observer<List<OrdersModel>>() {
+        mainViewModel.getOrders().observe(this, new Observer<List<OrdersModelItem>>() {
             @Override
-            public void onChanged(List<OrdersModel> orders) {
+            public void onChanged(List<OrdersModelItem> orders) {
                 if (orders != null){
                     Log.d("MyOrdersActivity", "Orders received: " +orders.size());
                     ordersAdapter.setOrdersList(orders);

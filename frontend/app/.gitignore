@@ -1,1 +1,3 @@
-/build
+/frontend/google-services.json
+/frontend/gradle
+/*.log

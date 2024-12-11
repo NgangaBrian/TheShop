@@ -269,7 +269,7 @@ public class MainViewModel extends ViewModel {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("VolleyError", "Erroe loading orders", error);
+                Log.d("VolleyError", "Error loading orders", error);
             }
         });
 

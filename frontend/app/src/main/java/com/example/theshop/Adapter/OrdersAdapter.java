@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -43,33 +44,24 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull OrdersAdapter.ViewHolder holder, int position) {
         OrdersModelItem ordersModelItem = ordersModelList.get(position);
+        List<OrderedProductsItem> orderedProductsItems = ordersModelItem.getOrderedProducts();
         if(ordersModelItem != null){
-        Log.d("OrdersAdapter", "Binding order: " + ordersModelItem.getOrderId());
-        holder.orderDatee.setText(ordersModelItem.getOrderDate() != null ? ordersModelItem.getOrderDate() : "N/A");
+            Log.d("OrdersAdapter", "Binding order: " + ordersModelItem.getOrderId());
+            holder.orderDatee.setText(ordersModelItem.getOrderDate() != null ? ordersModelItem.getOrderDate() : "N/A");
             holder.amountPaidd.setText(String.valueOf(ordersModelItem.getAmountPaid()) != null ?
                     String.valueOf(ordersModelItem.getAmountPaid()) : "0");
-        holder.orderNumberr.setText(String.valueOf(ordersModelItem.getOrderId()) != null ?
+            holder.orderNumberr.setText(String.valueOf(ordersModelItem.getOrderId()) != null ?
                 String.valueOf(ordersModelItem.getOrderId()) : "N/A");
 
-        List<OrderedProductsItem> orderedProductsItems = ordersModelItem.getOrderedProducts();
         if (orderedProductsItems != null && !orderedProductsItems.isEmpty()){
-        OrderedProductsItem firstProduct = orderedProductsItems.get(0);
-        holder.itemNamee.setText(firstProduct.getProductName() != null ? firstProduct.getProductName() : "N/A");
-        holder.quantityy.setText(firstProduct.getQuantity() != null ?
-                String.valueOf(firstProduct.getQuantity()) : "0");
-
-            String imageUrl = firstProduct.getImageUrl();
-            if (imageUrl != null && !imageUrl.isEmpty()) {
-                Glide.with(context).load(imageUrl).into(holder.imageVieww);
-            } else {
-                 // Use a placeholder if the URL is null
-                Log.d("Null Image Url", "Image Url is null");
-            }
-
-        } else {
-            Log.d("Null OrderedProductsItem", "OrdersProductsItem is null");
+            ProductsOrdersAdapter productsOrdersAdapter = new ProductsOrdersAdapter(context, orderedProductsItems);
+            holder.productsView.setLayoutManager(new LinearLayoutManager(context));
+            holder.productsView.setAdapter(productsOrdersAdapter);
         }
-        } else {
+        else {
+            Log.d("Null OrderedProductsItem", "OrdersProductsItem is null");
+        }}
+        else {
             Log.d("Null OrdersModelItem", "OrdersModelItem is null");
         }
     }
@@ -80,16 +72,14 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imageVieww;
-        private TextView itemNamee, orderDatee, quantityy, amountPaidd, orderNumberr;
+        private TextView orderDatee, amountPaidd, orderNumberr;
+        private RecyclerView productsView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageVieww = itemView.findViewById(R.id.orderImage);
-            itemNamee = itemView.findViewById(R.id.itemName);
             orderDatee = itemView.findViewById(R.id.orderDate);
-            quantityy = itemView.findViewById(R.id.quantity);
             amountPaidd = itemView.findViewById(R.id.amountPaid);
             orderNumberr = itemView.findViewById(R.id.orderNumber);
+            productsView = itemView.findViewById(R.id.productsRecyclerView);
 
         }
     }

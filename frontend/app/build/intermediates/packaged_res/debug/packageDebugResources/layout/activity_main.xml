@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MainActivity"
+    android:background="@drawable/home_background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The Shop"
+        android:id="@+id/appTitle"
+        android:layout_marginTop="50dp" 
+        android:gravity="center"
+        android:textSize="60dp"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to The Shop"
+        android:textSize="30dp"
+        android:textColor="@color/brown"
+        android:id="@+id/welcomeTV"
+        android:layout_below="@+id/appTitle"
+        android:layout_marginTop="360dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="If you want it, we have it."
+        android:textSize="20dp"
+        android:textColor="@color/brown"
+        android:id="@+id/appDescription"
+        android:layout_below="@+id/welcomeTV"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Login"
+        android:background="@drawable/background_btn_1"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        style="@android:style/Widget.Button"
+        android:layout_marginTop="30dp"
+        android:id="@+id/toLogin"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_below="@+id/appDescription"
+        android:layout_centerHorizontal="true"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Sign Up"
+        android:background="@drawable/background_btn_1"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        style="@android:style/Widget.Button"
+        android:id="@+id/toSignup"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/toLogin"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="blue">#434D94</color>
+    <color name="brown">#8b4513</color>
+    <color name="lightgrey">#D3D3D3</color>
+    <color name="maroon">#B22222</color>
+    <color name="orange">#FFA500</color>
+    <color name="peach_puff">#fee4d5</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">TheShop</string>
+    <string name="default_web_client_id" translatable="false">672373622687-m6nka97o5mn76ett4m095nfmbjacjcjb.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">672373622687</string>
+    <string name="google_api_key" translatable="false">AIzaSyAjBm7Voyk5si2jg5TvjMqBOjB2qz7oq0M</string>
+    <string name="google_app_id" translatable="false">1:672373622687:android:93f899500b7560c4f49faa</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAjBm7Voyk5si2jg5TvjMqBOjB2qz7oq0M</string>
+    <string name="google_storage_bucket" translatable="false">theshop-29b33.appspot.com</string>
+    <string name="project_id" translatable="false">theshop-29b33</string>
+    <style name="Base.Theme.TheShop" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="CornerImageView10dp">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+    <style name="CornerImageView5dp">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5dp</item>
+    </style>
+    <style name="FullCornerImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="Theme.TheShop" parent="Base.Theme.TheShop"/>
+</resources>

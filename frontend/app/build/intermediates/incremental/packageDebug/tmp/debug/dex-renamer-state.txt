@@ -1,0 +1,22 @@
+#Sun Dec 15 00:07:57 EAT 2024
+base.0=/home/b/IdeaProjects/TheShop/frontend/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/home/b/IdeaProjects/TheShop/frontend/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.2=/home/b/IdeaProjects/TheShop/frontend/app/build/intermediates/dex/debug/mergeProjectDexDebug/13/classes.dex
+base.3=/home/b/IdeaProjects/TheShop/frontend/app/build/intermediates/dex/debug/mergeProjectDexDebug/15/classes.dex
+base.4=/home/b/IdeaProjects/TheShop/frontend/app/build/intermediates/dex/debug/mergeProjectDexDebug/4/classes.dex
+base.5=/home/b/IdeaProjects/TheShop/frontend/app/build/intermediates/dex/debug/mergeProjectDexDebug/5/classes.dex
+base.6=/home/b/IdeaProjects/TheShop/frontend/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
+path.0=classes.dex
+path.1=0/classes.dex
+path.2=13/classes.dex
+path.3=15/classes.dex
+path.4=4/classes.dex
+path.5=5/classes.dex
+path.6=classes2.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex
+renamed.2=classes3.dex
+renamed.3=classes4.dex
+renamed.4=classes5.dex
+renamed.5=classes6.dex
+renamed.6=classes7.dex

@@ -53,9 +53,9 @@
                     android:drawableLeft="@drawable/baseline_email_24"
                     android:layout_width="match_parent"
                     android:textSize="20dp"
+                    android:textColor="@color/white"
                     android:layout_height="match_parent"
-                    android:background="@drawable/background_btn_1"
-                    android:backgroundTint="@color/maroon"
+                    android:background="@drawable/profile_btn_background"
                     android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,8 +81,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="20dp"
-                    android:background="@drawable/background_btn_1"
-                    android:backgroundTint="@color/maroon"
+                    android:textColor="@color/white"
+                    android:background="@drawable/profile_btn_background"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
             <LinearLayout

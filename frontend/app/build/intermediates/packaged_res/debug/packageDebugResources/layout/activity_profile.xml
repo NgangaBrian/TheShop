@@ -54,24 +54,23 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/back_navigation_icon" />
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imageView3"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginTop="32dp"
+                        android:scaleType="centerCrop"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.543"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/baseline_account_circle_24" />
-
+                        android:src="@drawable/baseline_account_circle_24"/>
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:text="Brian Mutwiri Nganga"
                         android:textColor="@color/white"
                         android:textSize="25dp"
                         android:textStyle="bold"
@@ -80,16 +79,15 @@
                         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="bnganga32@gmail.com"
                         android:textColor="@color/white"
                         android:textSize="18dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                        app:layout_constraintTop_toBottomOf="@+id/name" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -102,7 +100,7 @@
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView14">
+                        app:layout_constraintTop_toBottomOf="@+id/email">
 
 
                         <LinearLayout
@@ -253,6 +251,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
+                                android:id="@+id/changepw"
                                 android:text="Change"
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5B5B5B"
@@ -260,7 +259,6 @@
                         </LinearLayout>
 
                         <View
-                            android:id="@+id/view2"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
@@ -282,17 +280,16 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/mobileNo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
-                                android:text="0790944432"
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5B5B5B"
                                 android:textSize="15dp" />
                         </LinearLayout>
 
                         <View
-                            android:id="@+id/view2"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
@@ -314,17 +311,16 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/address"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
-                                android:text="Runyenjes, Embu, Kenya."
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5B5B5B"
                                 android:textSize="15dp" />
                         </LinearLayout>
 
                         <View
-                            android:id="@+id/view2"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
@@ -346,10 +342,10 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/postalCode"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.5"
-                                android:text="60103"
                                 android:textAlignment="viewEnd"
                                 android:textColor="#5B5B5B"
                                 android:textSize="15dp" />
@@ -365,7 +361,7 @@
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button4"
+        android:id="@+id/editProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"

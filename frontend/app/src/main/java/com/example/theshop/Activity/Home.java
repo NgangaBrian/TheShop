@@ -113,6 +113,9 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, Profile.class);
+                intent.putExtra("userId", userId);
+                intent.putExtra("fullname", fullname);
+                intent.putExtra("email", email);
                 startActivity(intent);
             }
         });

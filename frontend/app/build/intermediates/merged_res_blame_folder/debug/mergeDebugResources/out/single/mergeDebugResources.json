@@ -48,6 +48,10 @@
         "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/baseline_account_circle_24.xml"
     },
     {
+        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_category_details.xml.flat",
+        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_category_details.xml"
+    },
+    {
         "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_change_password.xml.flat",
         "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_change_password.xml"
     },
@@ -70,6 +74,10 @@
     {
         "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_profile_white_bg.xml.flat",
         "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/profile_white_bg.xml"
+    },
+    {
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_search_results.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_search_results.xml"
     },
     {
         "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_grey_bg_full_corner.xml.flat",
@@ -192,16 +200,16 @@
         "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/payment.png"
     },
     {
-        "merged": "com.example.theshop.app-debug-43:/layout_activity_profile.xml.flat",
-        "source": "com.example.theshop.app-main-45:/layout/activity_profile.xml"
-    },
-    {
         "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_brown_bg.xml.flat",
         "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/brown_bg.xml"
     },
     {
         "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_slider_image_container.xml.flat",
         "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/slider_image_container.xml"
+    },
+    {
+        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_error_image.png.flat",
+        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/error_image.png"
     },
     {
         "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_rounded_corners.xml.flat",

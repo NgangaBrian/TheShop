@@ -146,7 +146,7 @@ public class Home extends AppCompatActivity {
     public void initBestSeller() {
         progressBarBestSeller.setVisibility(View.VISIBLE);
         mainViewModel.getBestSeller().observe(this, items ->{
-            BestSellerAdapter adapter = new BestSellerAdapter(items, userId);
+            BestSellerAdapter adapter = new BestSellerAdapter(items, userId, Home.class);
             if(recyclerViewBestSeller.getAdapter() == null) {
 
                 recyclerViewBestSeller.setLayoutManager(new GridLayoutManager(this, 2));

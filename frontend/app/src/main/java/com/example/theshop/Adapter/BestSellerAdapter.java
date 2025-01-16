@@ -25,10 +25,12 @@ public class BestSellerAdapter extends RecyclerView.Adapter<BestSellerAdapter.Vi
     private List<ItemsModel> items;
     private Context context;
     private String userId;
+    private Class<?> targetActivity;
 
-    public BestSellerAdapter(List<ItemsModel> items, String userId) {
+    public BestSellerAdapter(List<ItemsModel> items, String userId, Class<?> targetActivity) {
         this.items = items;
         this.userId = userId;
+        this.targetActivity=targetActivity;
     }
 
     @NonNull

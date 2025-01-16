@@ -37,6 +37,9 @@
         android:theme="@style/Theme.TheShop"
         android:usesCleartextTraffic="true" >
         <activity
+            android:name="com.example.theshop.Activity.CategoryDetails"
+            android:exported="false" />
+        <activity
             android:name="com.example.theshop.Activity.EditProfile"
             android:exported="false" />
         <activity

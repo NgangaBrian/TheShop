@@ -3075,6 +3075,7 @@ int drawable design_ic_visibility_off 0x7f0700a7
 int drawable design_password_eye 0x7f0700a8
 int drawable design_snackbar_background 0x7f0700a9
 int drawable dot_background 0x7f0700aa
+int drawable error_image 0x7f07012b
 int drawable explore 0x7f0700ab
 int drawable facebook_icon 0x7f0700ac
 int drawable favourites 0x7f0700ad
@@ -3324,6 +3325,7 @@ int id cancel_button 0x7f080075
 int id carryVelocity 0x7f080076
 int id cartBtn 0x7f080077
 int id cartView 0x7f080078
+int id categoryName 0x7f08028d
 int id center 0x7f080079
 int id centerCrop 0x7f08007a
 int id centerInside 0x7f08007b
@@ -3425,6 +3427,8 @@ int id end 0x7f0800d9
 int id endToStart 0x7f0800da
 int id enterAlways 0x7f0800db
 int id enterAlwaysCollapsed 0x7f0800dc
+int id errorImage 0x7f08028e
+int id errorMessage 0x7f08028f
 int id escape 0x7f0800dd
 int id exitUntilCollapsed 0x7f0800de
 int id expand_activities_button 0x7f0800df
@@ -3477,7 +3481,6 @@ int id ignoreRequest 0x7f08010d
 int id image 0x7f08010e
 int id imageSlide 0x7f08010f
 int id imageView 0x7f080110
-int id imageView3 0x7f080111
 int id imageView4 0x7f080112
 int id imageView5 0x7f080113
 int id imageView9 0x7f080114
@@ -3510,6 +3513,7 @@ int id line3 0x7f08012e
 int id linear 0x7f08012f
 int id linearLayout 0x7f080130
 int id linearLayout2 0x7f080131
+int id linearLayout4 0x7f080289
 int id listMode 0x7f080132
 int id list_item 0x7f080133
 int id loginbtn 0x7f080134
@@ -3655,9 +3659,11 @@ int id priceTxt 0x7f0801be
 int id productImage 0x7f0801bf
 int id productsRecyclerView 0x7f0801c0
 int id profile 0x7f0801c1
+int id profilePic 0x7f080288
 int id progressBarBanner 0x7f0801c2
 int id progressBarCategory 0x7f0801c3
 int id progressBestSell 0x7f0801c4
+int id progressSearch 0x7f08028a
 int id progress_circular 0x7f0801c5
 int id progress_horizontal 0x7f0801c6
 int id radio 0x7f0801c7
@@ -3666,6 +3672,7 @@ int id ratingTxt 0x7f0801c9
 int id ratio 0x7f0801ca
 int id rectangles 0x7f0801cb
 int id recyclerBestSelling 0x7f0801cc
+int id recyclerSearch 0x7f08028b
 int id recyclerViewCategory 0x7f0801cd
 int id registerbtn 0x7f0801ce
 int id report_drawn 0x7f0801cf
@@ -3965,6 +3972,7 @@ int layout abc_search_view 0x7f0b0019
 int layout abc_select_dialog_material 0x7f0b001a
 int layout abc_tooltip 0x7f0b001b
 int layout activity_cart 0x7f0b001c
+int layout activity_category_details 0x7f0b0082
 int layout activity_change_password 0x7f0b001d
 int layout activity_detail 0x7f0b001e
 int layout activity_edit_profile 0x7f0b001f

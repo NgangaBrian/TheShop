@@ -3076,6 +3076,7 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable dot_background
+drawable error_image
 drawable explore
 drawable facebook_icon
 drawable favourites
@@ -3325,6 +3326,7 @@ id cancel_button
 id carryVelocity
 id cartBtn
 id cartView
+id categoryName
 id center
 id centerCrop
 id centerInside
@@ -3426,6 +3428,8 @@ id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id errorImage
+id errorMessage
 id escape
 id exitUntilCollapsed
 id expand_activities_button
@@ -3478,7 +3482,6 @@ id ignoreRequest
 id image
 id imageSlide
 id imageView
-id imageView3
 id imageView4
 id imageView5
 id imageView9
@@ -3511,6 +3514,7 @@ id line3
 id linear
 id linearLayout
 id linearLayout2
+id linearLayout4
 id listMode
 id list_item
 id loginbtn
@@ -3656,9 +3660,11 @@ id priceTxt
 id productImage
 id productsRecyclerView
 id profile
+id profilePic
 id progressBarBanner
 id progressBarCategory
 id progressBestSell
+id progressSearch
 id progress_circular
 id progress_horizontal
 id radio
@@ -3667,6 +3673,7 @@ id ratingTxt
 id ratio
 id rectangles
 id recyclerBestSelling
+id recyclerSearch
 id recyclerViewCategory
 id registerbtn
 id report_drawn
@@ -3966,6 +3973,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_cart
+layout activity_category_details
 layout activity_change_password
 layout activity_detail
 layout activity_edit_profile

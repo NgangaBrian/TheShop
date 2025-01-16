@@ -36,6 +36,7 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<List<SliderModel>> _slider = new MutableLiveData<>();
     private MutableLiveData<List<CategoryModel>> _category = new MutableLiveData<>();
     private MutableLiveData<List<ItemsModel>> _bestSeller = new MutableLiveData<>();
+    private MutableLiveData<List<ItemsModel>> _search = new MutableLiveData<>();
     private MutableLiveData<List<OrdersModelItem>> _orders = new MutableLiveData<List<OrdersModelItem>>();
 
 
@@ -51,6 +52,7 @@ public class MainViewModel extends ViewModel {
     public LiveData<List<CategoryModel>> getCategory(){
         return  _category;
     }
+    public LiveData<List<ItemsModel>> getSearch(){return _search;}
     public LiveData<List<ItemsModel>> getBestSeller(){
         return  _bestSeller;
     }
@@ -204,6 +206,74 @@ public class MainViewModel extends ViewModel {
         });
         requestQueue.add(jsonArrayRequest);
 
+    }
+
+
+    public void loadSearch(Context context, String searchTerm, boolean clearPrevious){
+        System.out.println(searchTerm);
+        if (isLoading) return;
+        isLoading = true;
+        String url = "http://192.168.43.233:8080/api/v1/search?search=" + searchTerm;
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("JSON Response", response.toString());
+                try {
+
+                    List<ItemsModel> newItems = new ArrayList<>();
+                    Set<Long> existingIds = new HashSet<>();
+
+                    List<ItemsModel> searchValue = _search.getValue();
+                    if (searchValue != null){
+                        for (ItemsModel item : searchValue){
+                            existingIds.add(item.getId());
+                        }
+                    }
+
+                    for(int i = 0; i < response.length(); i++){
+                        JSONObject itemsJson = response.getJSONObject(i);
+
+                        ItemsModel itemsModel = new ItemsModel();
+                        itemsModel.setId(itemsJson.getLong("product_id"));
+                        itemsModel.setName(itemsJson.getString("productName"));
+                        itemsModel.setImageUrl(itemsJson.getString("image_url"));
+                        itemsModel.setDescription(itemsJson.getString("productDescription"));
+                        itemsModel.setPrice(itemsJson.getDouble("product_price"));
+
+                        if(!existingIds.contains(itemsModel.getId())) {
+                            newItems.add(itemsModel);
+                        }
+
+                    }
+                    if(clearPrevious)
+                        if (_search.getValue() == null) {
+                            _search.setValue(newItems);
+                        } else {
+                            List<ItemsModel> currentItems = new ArrayList<>(_search.getValue());
+                            currentItems.addAll(newItems);
+                            _search.setValue(currentItems);
+                        }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    e.getMessage();
+                    Toast.makeText(context, "Cannot retrieve image url", Toast.LENGTH_SHORT).show();
+                } finally {
+                    isLoading = false;
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                error.getMessage();
+                Toast.makeText(context, "Faileddd!!!", Toast.LENGTH_SHORT).show();
+                isLoading = false;
+            }
+        });
+        requestQueue.add(jsonArrayRequest);
     }
 
     public void loadOrders(Context context, String userId){

@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:2:1-63:12
-INJECTED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:2:1-63:12
-INJECTED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:2:1-63:12
-INJECTED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:2:1-63:12
+ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:2:1-66:12
+INJECTED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:2:1-66:12
+INJECTED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:2:1-66:12
+INJECTED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:2:1-66:12
 MERGED from [com.google.android.material:material:1.12.0] /home/b/.gradle/caches/8.11.1/transforms/0b043b18995e0c1595cde031f68cd1b1/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/b/.gradle/caches/8.11.1/transforms/db902a55dcf1653cab41048fabee0cef/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
 MERGED from [com.tbuonomo:dotsindicator:4.3] /home/b/.gradle/caches/8.11.1/transforms/d662c8ff9e510ac6899b75aca7fe12de/transformed/dotsindicator-4.3-debug/AndroidManifest.xml:2:1-11:12
@@ -130,8 +130,8 @@ MERGED from [com.google.android.gms:play-services-measurement-sdk-api:22.1.0] /h
 	android:name
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:6:22-76
 application
-ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:8:5-61:19
-INJECTED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:8:5-61:19
+ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:8:5-64:19
+INJECTED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:8:5-64:19
 MERGED from [com.google.android.material:material:1.12.0] /home/b/.gradle/caches/8.11.1/transforms/0b043b18995e0c1595cde031f68cd1b1/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] /home/b/.gradle/caches/8.11.1/transforms/0b043b18995e0c1595cde031f68cd1b1/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/b/.gradle/caches/8.11.1/transforms/db902a55dcf1653cab41048fabee0cef/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -228,88 +228,94 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/b/.gr
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:10:9-65
 	android:usesCleartextTraffic
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:17:9-44
-activity#com.example.theshop.Activity.EditProfile
+activity#com.example.theshop.Activity.CategoryDetails
 ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:19:9-21:40
 	android:exported
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:21:13-37
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:20:13-49
-activity#com.example.theshop.Activity.ForgotPassword
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:20:13-53
+activity#com.example.theshop.Activity.EditProfile
 ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:22:9-24:40
 	android:exported
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:24:13-37
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:23:13-52
-activity#com.example.theshop.Activity.ChangePassword
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:23:13-49
+activity#com.example.theshop.Activity.ForgotPassword
 ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:25:9-27:40
 	android:exported
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:27:13-37
 	android:name
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:26:13-52
-activity#com.example.theshop.Activity.Profile
+activity#com.example.theshop.Activity.ChangePassword
 ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:28:9-30:40
 	android:exported
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:30:13-37
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:29:13-45
-activity#com.example.theshop.Activity.MyOrders
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:29:13-52
+activity#com.example.theshop.Activity.Profile
 ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:31:9-33:40
 	android:exported
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:33:13-37
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:32:13-46
-activity#com.example.theshop.Activity.SearchResults
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:32:13-45
+activity#com.example.theshop.Activity.MyOrders
 ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:34:9-36:40
 	android:exported
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:36:13-37
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:35:13-51
-activity#com.example.theshop.Activity.CartActivity
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:35:13-46
+activity#com.example.theshop.Activity.SearchResults
 ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:37:9-39:40
 	android:exported
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:39:13-37
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:38:13-50
-activity#com.example.theshop.Activity.DetailActivity
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:38:13-51
+activity#com.example.theshop.Activity.CartActivity
 ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:40:9-42:40
 	android:exported
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:42:13-37
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:41:13-52
-activity#com.example.theshop.Activity.Home
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:41:13-50
+activity#com.example.theshop.Activity.DetailActivity
 ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:43:9-45:40
 	android:exported
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:45:13-37
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:44:13-42
-activity#com.example.theshop.Activity.SignUp
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:44:13-52
+activity#com.example.theshop.Activity.Home
 ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:46:9-48:40
 	android:exported
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:48:13-37
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:47:13-44
-activity#com.example.theshop.Activity.Login
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:47:13-42
+activity#com.example.theshop.Activity.SignUp
 ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:49:9-51:40
 	android:exported
 		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:51:13-37
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:50:13-43
-activity#com.example.theshop.Activity.MainActivity
-ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:52:9-60:20
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:50:13-44
+activity#com.example.theshop.Activity.Login
+ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:52:9-54:40
 	android:exported
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:54:13-36
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:54:13-37
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:53:13-50
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:53:13-43
+activity#com.example.theshop.Activity.MainActivity
+ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:55:9-63:20
+	android:exported
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:57:13-36
+	android:name
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:56:13-50
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:55:13-59:29
+ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:58:13-62:29
 action#android.intent.action.MAIN
-ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:56:17-69
+ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:59:17-69
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:56:25-66
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:59:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:58:17-77
+ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:61:17-77
 	android:name
-		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:58:27-74
+		ADDED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml:61:27-74
 uses-sdk
 INJECTED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/b/IdeaProjects/TheShop/frontend/app/src/main/AndroidManifest.xml

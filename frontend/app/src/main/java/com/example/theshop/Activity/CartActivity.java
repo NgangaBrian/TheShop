@@ -34,16 +34,20 @@ import com.example.theshop.Helper.ManagementCart;
 import com.example.theshop.Model.ItemsModel;
 import com.example.theshop.R;
 
+import org.apache.commons.logging.LogFactory;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.NumberFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 public class CartActivity extends AppCompatActivity {
+    private static final org.apache.commons.logging.Log log = LogFactory.getLog(CartActivity.class);
     private ManagementCart managementCart;
     private double tax = 0.0;
     public ImageView backBtn;
@@ -53,6 +57,8 @@ public class CartActivity extends AppCompatActivity {
     public ProgressDialog mProgressDialog;
     public PopupWindow popupWindow;
     public String userId;
+    public Long orderId;
+    public String phoneNo, amountt;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -128,13 +134,13 @@ public class CartActivity extends AppCompatActivity {
                 confirmBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String phoneNo = phoneNumber.getText().toString();
-                        String amountt = "1";
+                        phoneNo = phoneNumber.getText().toString();
+                        amountt = "1";
                         if(phoneNo.isEmpty()){
                             phoneNumber.setError("Phone Number Required");
                         } else {
                             mProgressDialog.show();
-                            pay(phoneNo, amountt);
+                            saveOrderData();
                         }
                     }
                 });
@@ -151,6 +157,7 @@ public class CartActivity extends AppCompatActivity {
         HashMap<Object, Object> hashMap = new HashMap<>();
         hashMap.put("PhoneNumber", phoneNo);
         hashMap.put("Amount", amount);
+        hashMap.put("orderId", orderId);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(hashMap), new Response.Listener<JSONObject>() {
             @Override
@@ -161,6 +168,8 @@ public class CartActivity extends AppCompatActivity {
                     String responseCode = response.getString("ResponseCode");
                     if(responseCode.equals("0")){
                         Toast.makeText(CartActivity.this, "Please wait to enter your Mpesa pin", Toast.LENGTH_SHORT).show();
+                        managementCart.clearCart();
+                        finish();
 
                     } else {
                         Toast.makeText(CartActivity.this, "Failed. Please try again", Toast.LENGTH_SHORT).show();
@@ -186,18 +195,17 @@ public class CartActivity extends AppCompatActivity {
 
         requestQueue.add(jsonObjectRequest);
     }
-    private void sendOrderData(){
+    private void saveOrderData(){
         List<ItemsModel> cartItems = managementCart.getListCart();
 
         RequestQueue requestQueue = Volley.newRequestQueue(CartActivity.this);
 
-        String url = "http://192.168.43.233:8080/mobile-money/stk-transaction-result";
+        String url = "http://192.168.43.233:8080/api/v1/saveOrders";
 
         JSONObject ordersModel = new JSONObject();
         try {
-            ordersModel.put("paymentId", JSONObject.NULL);
+            ordersModel.put("merchant_request_id", JSONObject.NULL);
             ordersModel.put("customerId", userId);
-            ordersModel.put("id", JSONObject.NULL);
             ordersModel.put("orderDate", JSONObject.NULL);
 
             JSONArray productsArray = new JSONArray();
@@ -210,6 +218,8 @@ public class CartActivity extends AppCompatActivity {
 
             ordersModel.put("products", productsArray);
 
+            log.info(ordersModel);
+
 
         } catch (JSONException e){
             e.printStackTrace();
@@ -218,7 +228,16 @@ public class CartActivity extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, ordersModel, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                String responseBody = response.toString();
+                log.info(responseBody);
+                try {
+                    orderId = response.getLong("message");
+                    log.info(orderId);
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
                 Log.d("Order Sent", "Order sent Succesfully");
+                pay(phoneNo, amountt);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -226,6 +245,7 @@ public class CartActivity extends AppCompatActivity {
                 Log.e("Order Not Sent", "Order not sent");
                 error.printStackTrace();
                 error.getMessage();
+                mProgressDialog.dismiss();
             }
         });
 

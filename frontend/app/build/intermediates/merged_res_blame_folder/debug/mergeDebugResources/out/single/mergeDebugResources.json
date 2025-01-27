@@ -1,314 +1,310 @@
 [
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_baseline_message_24.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/baseline_message_24.xml"
+        "merged": "com.example.theshop.app-debug-43:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.theshop.app-main-45:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_brown_bg_popup.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/brown_bg_popup.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_circle_background.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/circle_background.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_search_results.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_search_results.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_grey_bg_circle.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/grey_bg_circle.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_cart.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_cart.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_orders.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/orders.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_login.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_login.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_grew_background.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/grew_background.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_baseline_lock_open_24.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/baseline_lock_open_24.xml"
+        "merged": "com.example.theshop.app-debug-43:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.theshop.app-main-45:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_viewholder_cart.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/viewholder_cart.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_change_password.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_change_password.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "com.example.theshop.app-debug-43:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.theshop.app-main-45:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "com.example.theshop.app-debug-43:/drawable_facebook_icon.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/facebook_icon.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_grey_bg_popup.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/grey_bg_popup.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_error_image.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/error_image.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_baseline_password_24.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/baseline_password_24.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_profile_white_bg.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/profile_white_bg.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_baseline_account_circle_24.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/baseline_account_circle_24.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_slider_image_container.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/slider_image_container.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_category_details.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_category_details.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_category_details.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_category_details.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_change_password.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_change_password.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_home.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_home.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_background_btn_1.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/background_btn_1.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_viewholder_my_orders.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/viewholder_my_orders.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_edit_profile.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_edit_profile.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_detail.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_detail.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.theshop.app-debug-43:/drawable_background_btn_1.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/background_btn_1.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_profile_btn_background.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/profile_btn_background.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_paymentinformation.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/paymentinformation.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_profile_white_bg.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/profile_white_bg.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_search_bg.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/search_bg.xml"
+    },
+    {
+        "merged": "com.example.theshop.app-debug-43:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.theshop.app-main-45:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.theshop.app-debug-43:/drawable_rounded_corners.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/rounded_corners.xml"
     },
     {
         "merged": "com.example.theshop.app-debug-43:/layout_activity_search_results.xml.flat",
         "source": "com.example.theshop.app-main-45:/layout/activity_search_results.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_grey_bg_full_corner.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/grey_bg_full_corner.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_baseline_lock_open_24.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/baseline_lock_open_24.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/mipmap-anydpi-v26/ic_launcher_round.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_baseline_account_circle_24.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/baseline_account_circle_24.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_forgot_password.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_forgot_password.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_sign_up.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_sign_up.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_grey_bg_circle.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/grey_bg_circle.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_grey_bg_full_corner.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/grey_bg_full_corner.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_profile.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/profile.png"
+        "merged": "com.example.theshop.app-debug-43:/drawable_profile_btn_background.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/profile_btn_background.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_viewholder_best_seller.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/viewholder_best_seller.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_cart.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_cart.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_ic_launcher_background.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/ic_launcher_background.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_favourites.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/favourites.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_baseline_call_24.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/baseline_call_24.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_notificationbell.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/notificationbell.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_grew_background.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/grew_background.xml"
+        "merged": "com.example.theshop.app-debug-43:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.theshop.app-main-45:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_home_background.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/home_background.png"
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_main.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_main.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_my_orders.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_my_orders.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "com.example.theshop.app-debug-43:/layout_viewholder_piclist.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/viewholder_piclist.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_settings.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/settings.png"
+        "merged": "com.example.theshop.app-debug-43:/drawable_baseline_email_24.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/baseline_email_24.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_circle_background.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/circle_background.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_baseline_password_24.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/baseline_password_24.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_brown_bottom_conner_bg.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/brown_bottom_conner_bg.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_profile.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/profile.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_cart.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/cart.png"
+        "merged": "com.example.theshop.app-debug-43:/drawable_profile_activity_background.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/profile_activity_background.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/xml_data_extraction_rules.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/xml/data_extraction_rules.xml"
+        "merged": "com.example.theshop.app-debug-43:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.theshop.app-main-45:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_back_navigation_icon.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/back_navigation_icon.png"
+        "merged": "com.example.theshop.app-debug-43:/drawable_white_bg.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/white_bg.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_paymentinformation.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/paymentinformation.png"
+        "merged": "com.example.theshop.app-debug-43:/drawable_back_navigation_icon.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/back_navigation_icon.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/xml_backup_rules.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/xml/backup_rules.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_payment.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/payment.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_viewholder_my_orders.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/viewholder_my_orders.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_google_icon.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/google_icon.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "com.example.theshop.app-debug-43:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_login_background.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/login_background.png"
+        "merged": "com.example.theshop.app-debug-43:/drawable_brown_bg.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/brown_bg.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_main.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_main.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_login.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_login.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_my_orders.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_my_orders.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_baseline_call_24.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/baseline_call_24.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_brown_bottom_conner_bg.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/brown_bottom_conner_bg.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_baseline_arrow_back_ios_24.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/baseline_arrow_back_ios_24.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_home_background.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/home_background.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_sign_up.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_sign_up.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_profile.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_profile.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_payment.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/payment.png"
+        "merged": "com.example.theshop.app-debug-43:/drawable_grey_bg_popup.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/grey_bg_popup.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_brown_bg.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/brown_bg.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_viewholder_cart.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/viewholder_cart.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_slider_image_container.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/slider_image_container.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_star.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/star.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_error_image.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/error_image.png"
+        "merged": "com.example.theshop.app-debug-43:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.theshop.app-main-45:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_rounded_corners.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/rounded_corners.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_baseline_arrow_back_ios_24.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/baseline_arrow_back_ios_24.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_search_bg.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/search_bg.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_viewholder_product_item.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/viewholder_product_item.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "com.example.theshop.app-debug-43:/drawable_login_background.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/login_background.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_baseline_search_24.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/baseline_search_24.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_viewholder_best_seller.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/viewholder_best_seller.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_baseline_lock_24.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/baseline_lock_24.xml"
+        "merged": "com.example.theshop.app-debug-43:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.theshop.app-main-45:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_explore.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/explore.png"
+        "merged": "com.example.theshop.app-debug-43:/drawable_baseline_lock_24.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/baseline_lock_24.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_profile_activity_background.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/profile_activity_background.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_explore.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/explore.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_viewholder_category.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/viewholder_category.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_settings.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/settings.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_home.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_home.xml"
+        "merged": "com.example.theshop.app-debug-43:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.theshop.app-main-45:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_edit_profile.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_edit_profile.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_profile.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_profile.xml"
+        "merged": "com.example.theshop.app-debug-43:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.theshop.app-main-45:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_star.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/star.png"
+        "merged": "com.example.theshop.app-debug-43:/layout_viewholder_popup_window.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/viewholder_popup_window.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "com.example.theshop.app-debug-43:/drawable_cart.png.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/cart.png"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_viewholder_piclist.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/viewholder_piclist.xml"
+        "merged": "com.example.theshop.app-debug-43:/drawable_brown_bg_popup.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/brown_bg_popup.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_notificationbell.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/notificationbell.png"
+        "merged": "com.example.theshop.app-debug-43:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.theshop.app-main-45:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_baseline_email_24.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/baseline_email_24.xml"
+        "merged": "com.example.theshop.app-debug-43:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.theshop.app-main-45:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_viewholder_popup_window.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/viewholder_popup_window.xml"
+        "merged": "com.example.theshop.app-debug-43:/xml_backup_rules.xml.flat",
+        "source": "com.example.theshop.app-main-45:/xml/backup_rules.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_favourites.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/favourites.png"
+        "merged": "com.example.theshop.app-debug-43:/drawable_baseline_message_24.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/baseline_message_24.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_white_bg.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/white_bg.xml"
+        "merged": "com.example.theshop.app-debug-43:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.theshop.app-main-45:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_activity_detail.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/activity_detail.xml"
+        "merged": "com.example.theshop.app-debug-43:/layout_activity_forgot_password.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/activity_forgot_password.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_google_icon.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/google_icon.png"
+        "merged": "com.example.theshop.app-debug-43:/layout_viewholder_category.xml.flat",
+        "source": "com.example.theshop.app-main-45:/layout/viewholder_category.xml"
     },
     {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_facebook_icon.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/facebook_icon.png"
-    },
-    {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/mipmap-anydpi-v26/ic_launcher.xml"
-    },
-    {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/layout_viewholder_product_item.xml.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/layout/viewholder_product_item.xml"
-    },
-    {
-        "merged": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-debug-43:/drawable_orders.png.flat",
-        "source": "/home/b/.gradle/daemon/8.11.1/com.example.theshop.app-main-45:/drawable/orders.png"
+        "merged": "com.example.theshop.app-debug-43:/drawable_baseline_search_24.xml.flat",
+        "source": "com.example.theshop.app-main-45:/drawable/baseline_search_24.xml"
     }
 ]

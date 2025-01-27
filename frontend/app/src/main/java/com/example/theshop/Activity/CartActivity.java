@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.theshop.Adapter.CartAdapter;
+import com.example.theshop.BuildConfig;
 import com.example.theshop.Helper.ChangeNumberItemsListener;
 import com.example.theshop.Helper.ManagementCart;
 import com.example.theshop.Model.ItemsModel;
@@ -59,12 +61,15 @@ public class CartActivity extends AppCompatActivity {
     public String userId;
     public Long orderId;
     public String phoneNo, amountt;
+    String baseUrl = BuildConfig.BASE_URL;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
+
 
         userId = getIntent().getStringExtra("userId");
         
@@ -152,7 +157,7 @@ public class CartActivity extends AppCompatActivity {
     private void pay(String phoneNo, String amount) {
         RequestQueue requestQueue = Volley.newRequestQueue(CartActivity.this);
 
-        String url = "http://192.168.43.233:8080/mobile-money/stk-transaction-request";
+        String url = baseUrl + "/mobile-money/stk-transaction-request";
 
         HashMap<Object, Object> hashMap = new HashMap<>();
         hashMap.put("PhoneNumber", phoneNo);
@@ -200,7 +205,7 @@ public class CartActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(CartActivity.this);
 
-        String url = "http://192.168.43.233:8080/api/v1/saveOrders";
+        String url = baseUrl + "/api/v1/saveOrders";
 
         JSONObject ordersModel = new JSONObject();
         try {

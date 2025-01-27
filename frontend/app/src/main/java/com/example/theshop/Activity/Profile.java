@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.example.theshop.BuildConfig;
 import com.example.theshop.R;
 
 import org.json.JSONObject;
@@ -91,7 +92,7 @@ public class Profile extends AppCompatActivity {
     private void loadProfileDetails(String userId) {
         RequestQueue queue = Volley.newRequestQueue(Profile.this);
 
-        String url = "http://192.168.43.233:8080/api/v1/getuserdetails/"+userId;
+        String url = BuildConfig.BASE_URL + "/api/v1/getuserdetails/"+userId;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

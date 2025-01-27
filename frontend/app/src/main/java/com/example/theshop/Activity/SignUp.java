@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.theshop.BuildConfig;
 import com.example.theshop.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -66,7 +67,7 @@ public class SignUp extends AppCompatActivity {
         // Configure Google Sign-In
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
-                .requestIdToken("49701769693-u2l7gbm64nm0vonkja627fanrk7iln8p.apps.googleusercontent.com")
+                .requestIdToken(BuildConfig.SERVER_CLIEND_ID)
                 .build();
 
         // Set up the Google sign-in client
@@ -109,7 +110,7 @@ public class SignUp extends AppCompatActivity {
     private void storeDetails(String fullname, String email, String password, String idToken, String authType) {
         RequestQueue queue = Volley.newRequestQueue(SignUp.this);
 
-        String url = "http://192.168.43.233:8080/api/v1/user/register";
+        String url = BuildConfig.BASE_URL + "/api/v1/user/register";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

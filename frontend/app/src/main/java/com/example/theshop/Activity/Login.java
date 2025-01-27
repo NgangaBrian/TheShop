@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.theshop.BuildConfig;
 import com.example.theshop.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -37,6 +39,7 @@ public class Login extends AppCompatActivity {
     public ImageView google, facebook;
     public EditText emailtv, passwordtv;
     public Button loginbtn;
+    public TextView forgotPass;
     public ProgressDialog mProgressDialog;
     private static final int RC_SIGN_IN = 9001;
 
@@ -47,6 +50,7 @@ public class Login extends AppCompatActivity {
 
         google = findViewById(R.id.google);
         loginbtn = findViewById(R.id.loginbtn);
+        forgotPass = findViewById(R.id.forgotPassword);
 
         emailtv = findViewById(R.id.email2);
         passwordtv = findViewById(R.id.password2);
@@ -75,6 +79,14 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
+
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +108,7 @@ public class Login extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(Login.this);
 
-        String url = "http://192.168.43.233:8080/api/v1/user/login";
+        String url = BuildConfig.BASE_URL + "/api/v1/user/login";
 
         HashMap<String, String> params = new HashMap<>();
         params.put("email", email);

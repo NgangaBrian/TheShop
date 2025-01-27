@@ -15,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.theshop.BuildConfig;
 import com.example.theshop.Model.CategoryModel;
 import com.example.theshop.Model.ItemsModel;
 import com.example.theshop.Model.OrderedProductsItem;
@@ -39,6 +40,8 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<List<ItemsModel>> _search = new MutableLiveData<>();
     private MutableLiveData<List<OrdersModelItem>> _orders = new MutableLiveData<List<OrdersModelItem>>();
 
+    private String baseUrl = BuildConfig.BASE_URL;
+
 
     public MainViewModel(){}
     public MainViewModel (Context context){
@@ -62,7 +65,7 @@ public class MainViewModel extends ViewModel {
 
     public void loadSlider(Context context){
 
-        String url = "http://192.168.43.233:8080/api/v1/bannersliders";
+        String url = baseUrl + "/api/v1/bannersliders";
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
@@ -101,7 +104,7 @@ public class MainViewModel extends ViewModel {
     }
 
     public void loadCategory(Context context){
-        String url = "http://192.168.43.233:8080/api/v1/categories";
+        String url = BuildConfig.BASE_URL + "/api/v1/categories";
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
@@ -145,7 +148,7 @@ public class MainViewModel extends ViewModel {
         System.out.println(currentPage);
         if (isLoading) return;
         isLoading = true;
-        String url = "http://192.168.43.233:8080/api/v1/items?page=" + currentPage +"&size=" + pageSize;
+        String url = baseUrl + "/api/v1/items?page=" + currentPage +"&size=" + pageSize;
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
@@ -213,7 +216,7 @@ public class MainViewModel extends ViewModel {
         System.out.println(searchTerm);
         if (isLoading) return;
         isLoading = true;
-        String url = "http://192.168.43.233:8080/api/v1/search?search=" + searchTerm;
+        String url = baseUrl + "/api/v1/search?search=" + searchTerm;
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
@@ -277,7 +280,7 @@ public class MainViewModel extends ViewModel {
     }
 
     public void loadOrders(Context context, String userId){
-        String url = "http://192.168.43.233:8080/api/v1/orders/" + userId;
+        String url = baseUrl + "/api/v1/orders/" + userId;
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 

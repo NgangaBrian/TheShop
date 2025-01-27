@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.theshop.BuildConfig;
 import com.example.theshop.R;
 import com.google.gson.JsonObject;
 
@@ -86,7 +87,7 @@ public class ChangePassword extends AppCompatActivity {
 
                     RequestQueue queue = Volley.newRequestQueue(ChangePassword.this);
 
-                    String url = "http://192.168.43.233:8080/api/v1/user/changepassword";
+                    String url = BuildConfig.BASE_URL +  "/api/v1/user/changepassword";
 
                     JSONObject passdetails = new JSONObject();
                     try {

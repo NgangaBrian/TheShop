@@ -32,6 +32,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.example.theshop.BuildConfig;
 import com.example.theshop.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -179,7 +180,7 @@ public class EditProfile extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(EditProfile.this);
 
-        String url = "http://192.168.43.233:8080/api/v1/updateuserdetails";
+        String url = BuildConfig.BASE_URL +  "/api/v1/updateuserdetails";
 
         JSONObject userDetails = new JSONObject();
         try {

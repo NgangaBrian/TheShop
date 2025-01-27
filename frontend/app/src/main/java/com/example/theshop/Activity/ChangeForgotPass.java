@@ -1,12 +1,14 @@
 package com.example.theshop.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,10 +29,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ChangeForgotPass extends AppCompatActivity {
-    public EditText newPassword, confirmPassword, cancel;
+    public EditText newPassword, confirmPassword;
+    public TextView cancel;
     public Button createPassword;
     public String email;
     public ImageView backBtn;
+    public ProgressDialog mProgressDialog;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -40,6 +44,12 @@ public class ChangeForgotPass extends AppCompatActivity {
 
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
+
+        mProgressDialog = new ProgressDialog(this);
+
+        mProgressDialog.setTitle("Processing Your Request");
+        mProgressDialog.setMessage("Please wait...");
+        mProgressDialog.setIndeterminate(true);
 
         newPassword = findViewById(R.id.newPassword);
         confirmPassword = findViewById(R.id.confirmPassword);
@@ -64,6 +74,7 @@ public class ChangeForgotPass extends AppCompatActivity {
         createPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mProgressDialog.show();
                 String newPass = newPassword.getText().toString();
                 String confirmPass = confirmPassword.getText().toString();
 
@@ -98,6 +109,7 @@ public class ChangeForgotPass extends AppCompatActivity {
                     if (message.equals("Password Changed Successfully")){
                         Toast.makeText(ChangeForgotPass.this, message, Toast.LENGTH_SHORT).show();
                         finish();
+                        mProgressDialog.dismiss();
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -106,8 +118,11 @@ public class ChangeForgotPass extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                error.printStackTrace();
+                Toast.makeText(ChangeForgotPass.this, "Failed. Please try again", Toast.LENGTH_SHORT).show();
             }
         });
+
+        queue.add(jsonObjectRequest);
     }
 }

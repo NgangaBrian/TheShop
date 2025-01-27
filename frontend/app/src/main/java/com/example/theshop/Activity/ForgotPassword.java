@@ -1,6 +1,7 @@
 package com.example.theshop.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,19 +17,27 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.theshop.R;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.json.JSONObject;
+
 public class ForgotPassword extends AppCompatActivity {
+    private static final Log log = LogFactory.getLog(ForgotPassword.class);
     public EditText emailET;
     public Button submit;
     public ImageView back;
     public TextView cancel;
+    public ProgressDialog mProgressDialog;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -41,7 +50,20 @@ public class ForgotPassword extends AppCompatActivity {
         back = findViewById(R.id.back);
         cancel = findViewById(R.id.cancel);
 
+        mProgressDialog = new ProgressDialog(this);
+
+        mProgressDialog.setTitle("Processing Your Request");
+        mProgressDialog.setMessage("Please wait...");
+        mProgressDialog.setIndeterminate(true);
+
         back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -51,6 +73,7 @@ public class ForgotPassword extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mProgressDialog.show();
                 String email = emailET.getText().toString();
                 sendVerificationCode(email);
             }
@@ -71,14 +94,24 @@ public class ForgotPassword extends AppCompatActivity {
                     intent.putExtra("email", email);
                     startActivity(intent);
                     finish();
+                    mProgressDialog.dismiss();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
+                mProgressDialog.dismiss();
                 Toast.makeText(ForgotPassword.this, "Failed. Please try again later", Toast.LENGTH_SHORT).show();
             }
         });
+
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000, // Timeout in milliseconds
+                0,     // Max retry attempts
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+
+        queue.add(stringRequest);
     }
 }

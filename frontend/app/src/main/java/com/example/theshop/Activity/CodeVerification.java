@@ -1,6 +1,7 @@
 package com.example.theshop.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -30,6 +31,8 @@ public class CodeVerification extends AppCompatActivity {
     public Button verify;
     public String email;
     public ImageView backBtn;
+    public ProgressDialog mProgressDialog;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,12 @@ public class CodeVerification extends AppCompatActivity {
         code4 = findViewById(R.id.etDigit4);
         code5 = findViewById(R.id.etDigit5);
         code6 = findViewById(R.id.etDigit6);
+
+        mProgressDialog = new ProgressDialog(this);
+
+        mProgressDialog.setTitle("Processing Your Request");
+        mProgressDialog.setMessage("Please wait...");
+        mProgressDialog.setIndeterminate(true);
 
         EditText[] editTexts = {code1, code2, code3, code4, code5, code6};
 
@@ -80,6 +89,7 @@ public class CodeVerification extends AppCompatActivity {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mProgressDialog.show();
                 String a = code1.getText().toString();
                 String b = code2.getText().toString();
                 String c = code3.getText().toString();
@@ -118,6 +128,7 @@ public class CodeVerification extends AppCompatActivity {
                     intent.putExtra("email", email);
                     startActivity(intent);
                     finish();
+                    mProgressDialog.dismiss();
                 }
             }
         }, new Response.ErrorListener() {
@@ -125,8 +136,9 @@ public class CodeVerification extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 Toast.makeText(CodeVerification.this, "Failed. Please try again later", Toast.LENGTH_SHORT).show();
+                mProgressDialog.dismiss();
             }
         });
-
+        queue.add(stringRequest);
     }
 }
